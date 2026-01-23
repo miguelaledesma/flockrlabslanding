@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Send, Mail, CheckCircle } from "lucide-react";
+import { Send, Mail } from "lucide-react";
+import { SuccessModal } from "@/components/success-modal";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -14,6 +15,7 @@ export default function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -43,6 +45,7 @@ export default function Contact() {
       if (response.ok) {
         setSubmitStatus("success");
         setFormData({ name: "", email: "", subject: "", message: "" });
+        setIsSuccessModalOpen(true);
       } else {
         console.error("Form submission error:", data);
         setSubmitStatus("error");
@@ -206,13 +209,6 @@ export default function Contact() {
                 />
               </div>
 
-              {submitStatus === "success" && (
-                <div className="p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg flex items-center space-x-2 text-green-800 dark:text-green-300 transition-colors">
-                  <CheckCircle className="h-5 w-5" />
-                  <span>Message sent successfully! We&apos;ll get back to you soon.</span>
-                </div>
-              )}
-
               {submitStatus === "error" && (
                 <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-800 dark:text-red-300 transition-colors">
                   <span>
@@ -241,6 +237,12 @@ export default function Contact() {
           </motion.div>
         </div>
       </div>
+
+      {/* Success Modal */}
+      <SuccessModal 
+        isOpen={isSuccessModalOpen} 
+        onClose={() => setIsSuccessModalOpen(false)} 
+      />
     </main>
   );
 }
