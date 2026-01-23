@@ -54,12 +54,12 @@ export default function Home() {
   ];
 
   return (
-    <main className="min-h-screen bg-white selection:bg-blue-50 selection:text-blue-600">
+    <main className="min-h-screen bg-white dark:bg-slate-950 selection:bg-blue-50 dark:selection:bg-blue-900/30 selection:text-blue-600 dark:selection:text-blue-400 transition-colors">
       {/* Hero Section */}
       <section className="relative pt-48 pb-32 px-4 overflow-hidden">
         {/* Designer Background: Ultra-subtle grid + light mask */}
         <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-40" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-40 dark:opacity-20" />
         </div>
 
         <div className="max-w-5xl mx-auto w-full">
@@ -68,18 +68,18 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-6xl md:text-8xl font-bold tracking-tight text-slate-900 mb-8 leading-[0.95]"
+              className="text-6xl md:text-8xl font-bold tracking-tight text-slate-900 dark:text-slate-100 mb-8 leading-[0.95] transition-colors"
             >
               Technology for <br />
               <span className="relative inline-block mt-2">
-                <span className="relative z-10 font-serif italic bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent px-2">
+                <span className="relative z-10 font-serif italic bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent px-2">
                   YOUR
                 </span>
                 <motion.span
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ duration: 0.8, delay: 0.8, ease: "circOut" }}
-                  className="absolute bottom-2 left-0 w-full h-[0.15em] bg-blue-100/80 -z-0 origin-left rounded-full"
+                  className="absolute bottom-2 left-0 w-full h-[0.15em] bg-blue-100/80 dark:bg-blue-900/40 -z-0 origin-left rounded-full"
                 />
               </span>{" "}
               business.
@@ -89,7 +89,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg md:text-xl text-slate-500 mb-12 max-w-2xl leading-relaxed font-medium"
+              className="text-lg md:text-xl text-slate-500 dark:text-slate-400 mb-12 max-w-2xl leading-relaxed font-medium transition-colors"
             >
               We build high-performance CRMs, custom operations software, and modern web experiences for businesses that value quality.
             </motion.p>
@@ -101,12 +101,12 @@ export default function Home() {
               className="flex flex-col sm:flex-row gap-4"
             >
               <Link href="/contact">
-                <Button size="lg" className="h-12 px-8 text-sm font-semibold bg-slate-900 hover:bg-slate-800 text-white rounded-full transition-all shadow-sm">
+                <Button size="lg" className="h-12 px-8 text-sm font-semibold bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 dark:hover:bg-slate-200 text-white dark:text-slate-900 rounded-full transition-all shadow-sm">
                   Get Started
                 </Button>
               </Link>
               <Link href="/about">
-                <Button size="lg" variant="outline" className="h-12 px-8 text-sm font-semibold border-slate-200 text-slate-600 hover:bg-slate-50 rounded-full transition-all">
+                <Button size="lg" variant="outline" className="h-12 px-8 text-sm font-semibold border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-full transition-all">
                   Our Process
                 </Button>
               </Link>
@@ -116,20 +116,20 @@ export default function Home() {
       </section>
 
       {/* Testimonial Section - Clean Marquee */}
-      <section className="py-20 border-y border-slate-50 bg-slate-50/20 overflow-hidden">
+      <section className="py-20 border-y border-slate-50 dark:border-slate-800 bg-slate-50/20 dark:bg-slate-900/20 overflow-hidden transition-colors">
         <div className="flex flex-col gap-12">
           <div className="flex space-x-8 animate-marquee whitespace-nowrap">
             {[...reviews, ...reviews].map((review, i) => (
               <div
                 key={i}
-                className="inline-block w-[400px] bg-white p-8 rounded-3xl border border-slate-100 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.02)]"
+                className="inline-block w-[400px] bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.02)] dark:shadow-[0_2px_15px_-3px_rgba(0,0,0,0.3)] transition-colors"
               >
-                <p className="text-slate-600 text-base whitespace-normal mb-6 font-medium leading-relaxed italic">
+                <p className="text-slate-600 dark:text-slate-300 text-base whitespace-normal mb-6 font-medium leading-relaxed italic transition-colors">
                   &quot;{review.content}&quot;
                 </p>
                 <div className="flex items-center gap-3">
                   {review.image ? (
-                    <div className="h-10 w-10 rounded-full overflow-hidden border border-slate-100 bg-slate-50 relative">
+                    <div className="h-10 w-10 rounded-full overflow-hidden border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 relative transition-colors">
                       <Image
                         src={review.image}
                         alt={review.name}
@@ -138,11 +138,11 @@ export default function Home() {
                       />
                     </div>
                   ) : (
-                    <div className="h-1 w-8 bg-blue-600 rounded-full" />
+                    <div className="h-1 w-8 bg-blue-600 dark:bg-blue-400 rounded-full transition-colors" />
                   )}
                   <div>
-                    <p className="font-bold text-slate-900 text-sm">{review.name}</p>
-                    <p className="text-slate-400 text-[11px] font-bold uppercase tracking-wider">{review.role}</p>
+                    <p className="font-bold text-slate-900 dark:text-slate-100 text-sm transition-colors">{review.name}</p>
+                    <p className="text-slate-400 dark:text-slate-500 text-[11px] font-bold uppercase tracking-wider transition-colors">{review.role}</p>
                   </div>
                 </div>
               </div>
@@ -158,17 +158,17 @@ export default function Home() {
             {/* Featured Box */}
             <motion.div
               whileHover={{ y: -2 }}
-              className="md:col-span-2 lg:row-span-2 bg-slate-900 rounded-[2.5rem] p-12 text-white flex flex-col justify-between relative overflow-hidden"
+              className="md:col-span-2 lg:row-span-2 bg-slate-900 dark:bg-slate-800 rounded-[2.5rem] p-12 text-white flex flex-col justify-between relative overflow-hidden transition-colors"
             >
-              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/20 blur-[100px]" />
+              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/20 dark:bg-blue-500/20 blur-[100px]" />
               <div className="relative z-10">
-                <Rocket className="h-8 w-8 mb-8 text-blue-400" />
+                <Rocket className="h-8 w-8 mb-8 text-blue-400 dark:text-blue-300 transition-colors" />
                 <h3 className="text-4xl font-bold mb-4 tracking-tight">Custom <br />Solutions</h3>
-                <p className="text-slate-400 text-lg leading-relaxed max-w-xs">We don&apos;t do generic. We build tools specifically for your workflow.</p>
+                <p className="text-slate-400 dark:text-slate-300 text-lg leading-relaxed max-w-xs transition-colors">We don&apos;t do generic. We build tools specifically for your workflow.</p>
               </div>
               <div className="relative z-10 flex flex-wrap gap-2">
                 {["CRMs", "Operations", "AI", "Mobile"].map(tag => (
-                  <span key={tag} className="px-4 py-1.5 rounded-full bg-white/10 text-xs font-bold uppercase tracking-wider">{tag}</span>
+                  <span key={tag} className="px-4 py-1.5 rounded-full bg-white/10 dark:bg-white/20 text-xs font-bold uppercase tracking-wider transition-colors">{tag}</span>
                 ))}
               </div>
             </motion.div>
@@ -176,49 +176,49 @@ export default function Home() {
             {/* AI Box */}
             <motion.div
               whileHover={{ y: -2 }}
-              className="md:col-span-2 bg-white rounded-[2.5rem] border border-slate-100 p-10 flex flex-col justify-between group hover:border-blue-100 transition-colors"
+              className="md:col-span-2 bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 p-10 flex flex-col justify-between group hover:border-blue-100 dark:hover:border-blue-800 transition-colors"
             >
               <div className="flex justify-between items-start">
-                <div className="h-10 w-10 rounded-xl bg-blue-50 flex items-center justify-center">
-                  <Bot className="h-5 w-5 text-blue-600" />
+                <div className="h-10 w-10 rounded-xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center transition-colors">
+                  <Bot className="h-5 w-5 text-blue-600 dark:text-blue-400 transition-colors" />
                 </div>
-                <div className="px-3 py-1 rounded-full bg-emerald-50 text-[10px] font-bold text-emerald-600 uppercase tracking-widest">Active</div>
+                <div className="px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-900/30 text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest transition-colors">Active</div>
               </div>
               <div>
-                <h3 className="text-xl font-bold text-slate-900 mb-2">AI Workflows</h3>
-                <p className="text-slate-500 text-sm font-medium">Modernize your business with automated AI agents and smart document processing.</p>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100 mb-2 transition-colors">AI Workflows</h3>
+                <p className="text-slate-500 dark:text-slate-400 text-sm font-medium transition-colors">Modernize your business with automated AI agents and smart document processing.</p>
               </div>
             </motion.div>
 
             {/* Industries Box */}
             <motion.div
               whileHover={{ y: -2 }}
-              className="md:col-span-1 bg-slate-50/50 rounded-[2.5rem] border border-slate-100 p-10 flex flex-col justify-between"
+              className="md:col-span-1 bg-slate-50/50 dark:bg-slate-900/50 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 p-10 flex flex-col justify-between transition-colors"
             >
-              <Building2 className="h-6 w-6 text-slate-400" />
-              <h3 className="text-lg font-bold text-slate-900 leading-tight">Industries <br />We Support</h3>
-              <p className="text-slate-400 text-xs font-bold uppercase tracking-tighter">Landscaping to Construction</p>
+              <Building2 className="h-6 w-6 text-slate-400 dark:text-slate-500 transition-colors" />
+              <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100 leading-tight transition-colors">Industries <br />We Support</h3>
+              <p className="text-slate-400 dark:text-slate-500 text-xs font-bold uppercase tracking-tighter transition-colors">Landscaping to Construction</p>
             </motion.div>
 
             {/* Trust Box */}
             <motion.div
               whileHover={{ y: -2 }}
-              className="md:col-span-1 bg-white rounded-[2.5rem] border border-slate-100 p-10 flex flex-col justify-between hover:border-blue-100 transition-colors"
+              className="md:col-span-1 bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 p-10 flex flex-col justify-between hover:border-blue-100 dark:hover:border-blue-800 transition-colors"
             >
-              <CheckCircle2 className="h-6 w-6 text-blue-600" />
-              <h3 className="text-lg font-bold text-slate-900">Zero Jargon.</h3>
-              <p className="text-slate-500 text-sm font-medium">Clear communication, no hidden fees.</p>
+              <CheckCircle2 className="h-6 w-6 text-blue-600 dark:text-blue-400 transition-colors" />
+              <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100 transition-colors">Zero Jargon.</h3>
+              <p className="text-slate-500 dark:text-slate-400 text-sm font-medium transition-colors">Clear communication, no hidden fees.</p>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* The Toolkit - Ultra Clean Grid */}
-      <section className="py-32 bg-slate-50/30">
+      <section className="py-32 bg-slate-50/30 dark:bg-slate-900/30 transition-colors">
         <div className="max-w-7xl mx-auto px-6">
           <div className="max-w-2xl mb-24">
-            <h2 className="text-4xl font-bold text-slate-900 mb-6 tracking-tight">The Toolkit</h2>
-            <p className="text-lg text-slate-500 font-medium">Specialized software designed for the growth of local businesses.</p>
+            <h2 className="text-4xl font-bold text-slate-900 dark:text-slate-100 mb-6 tracking-tight transition-colors">The Toolkit</h2>
+            <p className="text-lg text-slate-500 dark:text-slate-400 font-medium transition-colors">Specialized software designed for the growth of local businesses.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16">
@@ -239,11 +239,11 @@ export default function Home() {
                 viewport={{ once: true }}
                 className="flex flex-col group"
               >
-                <div className="h-10 w-10 mb-6 flex items-center justify-center rounded-lg bg-white border border-slate-100 shadow-sm group-hover:border-blue-200 transition-colors">
-                  <service.icon className="h-5 w-5 text-slate-900 group-hover:text-blue-600 transition-colors" />
+                <div className="h-10 w-10 mb-6 flex items-center justify-center rounded-lg bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm group-hover:border-blue-200 dark:group-hover:border-blue-700 transition-colors">
+                  <service.icon className="h-5 w-5 text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
                 </div>
-                <h3 className="font-bold text-slate-900 mb-3">{service.title}</h3>
-                <p className="text-slate-500 text-sm leading-relaxed font-medium">{service.desc}</p>
+                <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-3 transition-colors">{service.title}</h3>
+                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed font-medium transition-colors">{service.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -251,11 +251,11 @@ export default function Home() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-32 bg-white">
+      <section className="py-32 bg-white dark:bg-slate-950 transition-colors">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-20">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4 tracking-tight">Common Questions</h2>
-            <p className="text-slate-500 font-medium text-lg">Everything you need to know about working with us.</p>
+            <h2 className="text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4 tracking-tight transition-colors">Common Questions</h2>
+            <p className="text-slate-500 dark:text-slate-400 font-medium text-lg transition-colors">Everything you need to know about working with us.</p>
           </div>
 
           <div className="space-y-6">
@@ -287,10 +287,10 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="p-8 rounded-[2rem] border border-slate-100 bg-slate-50/30 hover:bg-white hover:border-blue-100 hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300"
+                className="p-8 rounded-[2rem] border border-slate-100 dark:border-slate-800 bg-slate-50/30 dark:bg-slate-900/30 hover:bg-white dark:hover:bg-slate-900 hover:border-blue-100 dark:hover:border-blue-800 hover:shadow-xl hover:shadow-blue-500/5 dark:hover:shadow-blue-500/10 transition-all duration-300"
               >
-                <h3 className="text-lg font-bold text-slate-900 mb-3">{faq.q}</h3>
-                <p className="text-slate-600 leading-relaxed font-medium">{faq.a}</p>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-3 transition-colors">{faq.q}</h3>
+                <p className="text-slate-600 dark:text-slate-300 leading-relaxed font-medium transition-colors">{faq.a}</p>
               </motion.div>
             ))}
           </div>
@@ -306,17 +306,17 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-5xl md:text-7xl font-bold text-slate-900 mb-10 tracking-tighter">Ready to build?</h2>
-            <p className="text-xl text-slate-500 mb-12 max-w-2xl mx-auto font-medium">
+            <h2 className="text-5xl md:text-7xl font-bold text-slate-900 dark:text-slate-100 mb-10 tracking-tighter transition-colors">Ready to build?</h2>
+            <p className="text-xl text-slate-500 dark:text-slate-400 mb-12 max-w-2xl mx-auto font-medium transition-colors">
               Join the local businesses modernizing their operations with Flockr Labs.
             </p>
             <div className="flex flex-col items-center gap-6">
               <Link href="/contact">
-                <Button size="lg" className="h-16 px-12 text-lg font-bold bg-blue-600 hover:bg-blue-700 text-white rounded-full transition-all shadow-[0_20px_40px_-15px_rgba(37,99,235,0.4)]">
+                <Button size="lg" className="h-16 px-12 text-lg font-bold bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white rounded-full transition-all shadow-[0_20px_40px_-15px_rgba(37,99,235,0.4)] dark:shadow-[0_20px_40px_-15px_rgba(59,130,246,0.3)]">
                   Let&apos;s talk
                 </Button>
               </Link>
-              <a href="mailto:flockr@flockrlabs.com" className="text-slate-400 hover:text-slate-900 transition-colors font-bold uppercase tracking-widest text-[10px]">
+              <a href="mailto:flockr@flockrlabs.com" className="text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-200 transition-colors font-bold uppercase tracking-widest text-[10px]">
                 flockr@flockrlabs.com
               </a>
             </div>

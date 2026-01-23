@@ -52,7 +52,7 @@ export default function Contact() {
   };
 
   return (
-    <main className="min-h-screen pt-32 pb-20 bg-gradient-to-b from-white to-gray-50">
+    <main className="min-h-screen pt-32 pb-20 bg-gradient-to-b from-white to-gray-50 dark:from-slate-950 dark:to-slate-900 transition-colors">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -61,10 +61,10 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-slate-100 mb-6 transition-colors">
             Let&apos;s Talk
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-slate-300 max-w-2xl mx-auto transition-colors">
             Tell us about your business and what you need help with. We typically respond within a few hours during business days.
           </p>
         </motion.div>
@@ -75,28 +75,28 @@ export default function Contact() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8"
+            className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-gray-200 dark:border-slate-800 p-8 transition-colors"
           >
             <div className="space-y-8">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-slate-100 mb-4 transition-colors">
                   Get in Touch
                 </h2>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 dark:text-slate-300 leading-relaxed transition-colors">
                   Fill out the form or shoot us an email directly. Either way, we&apos;ll get back to you within 24 hours—usually much sooner.
                 </p>
               </div>
 
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
-                  <div className="p-3 bg-gradient-to-br from-blue-100 to-violet-100 rounded-lg">
-                    <Mail className="h-6 w-6 text-blue-600" />
+                  <div className="p-3 bg-gradient-to-br from-blue-100 to-violet-100 dark:from-blue-900/30 dark:to-violet-900/30 rounded-lg transition-colors">
+                    <Mail className="h-6 w-6 text-blue-600 dark:text-blue-400 transition-colors" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
+                    <h3 className="font-semibold text-gray-900 dark:text-slate-100 mb-1 transition-colors">Email</h3>
                     <a
                       href="mailto:flockr@flockrlabs.com"
-                      className="text-gray-600 hover:text-blue-600 transition-colors"
+                      className="text-gray-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                     >
                       flockr@flockrlabs.com
                     </a>
@@ -104,8 +104,8 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="pt-8 border-t border-gray-200">
-                <p className="text-sm text-gray-500">
+              <div className="pt-8 border-t border-gray-200 dark:border-slate-800 transition-colors">
+                <p className="text-sm text-gray-500 dark:text-slate-400 transition-colors">
                   <strong>Legal Name:</strong> Flockr Labs LLC
                 </p>
               </div>
@@ -117,13 +117,13 @@ export default function Contact() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8"
+            className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-gray-200 dark:border-slate-800 p-8 transition-colors"
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium text-gray-900 mb-2"
+                  className="block text-sm font-medium text-gray-900 dark:text-slate-100 mb-2 transition-colors"
                 >
                   Name
                 </label>
@@ -134,7 +134,7 @@ export default function Contact() {
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all text-gray-900 bg-white"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-600 dark:focus:ring-blue-500 focus:border-transparent outline-none transition-all text-gray-900 dark:text-slate-100 bg-white dark:bg-slate-800 placeholder:text-gray-400 dark:placeholder:text-slate-500"
                   placeholder="Your name"
                 />
               </div>
@@ -142,7 +142,7 @@ export default function Contact() {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-gray-900 mb-2"
+                  className="block text-sm font-medium text-gray-900 dark:text-slate-100 mb-2 transition-colors"
                 >
                   Email
                 </label>
@@ -153,7 +153,7 @@ export default function Contact() {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all text-gray-900 bg-white"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-600 dark:focus:ring-blue-500 focus:border-transparent outline-none transition-all text-gray-900 dark:text-slate-100 bg-white dark:bg-slate-800 placeholder:text-gray-400 dark:placeholder:text-slate-500"
                   placeholder="your.email@example.com"
                 />
               </div>
@@ -161,7 +161,7 @@ export default function Contact() {
               <div>
                 <label
                   htmlFor="subject"
-                  className="block text-sm font-medium text-gray-900 mb-2"
+                  className="block text-sm font-medium text-gray-900 dark:text-slate-100 mb-2 transition-colors"
                 >
                   Subject
                 </label>
@@ -172,7 +172,7 @@ export default function Contact() {
                   required
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all text-gray-900 bg-white"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-600 dark:focus:ring-blue-500 focus:border-transparent outline-none transition-all text-gray-900 dark:text-slate-100 bg-white dark:bg-slate-800 placeholder:text-gray-400 dark:placeholder:text-slate-500"
                   placeholder="What's this about?"
                 />
               </div>
@@ -180,7 +180,7 @@ export default function Contact() {
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium text-gray-900 mb-2"
+                  className="block text-sm font-medium text-gray-900 dark:text-slate-100 mb-2 transition-colors"
                 >
                   Message
                 </label>
@@ -191,20 +191,20 @@ export default function Contact() {
                   rows={6}
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all resize-none text-gray-900 bg-white"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-600 dark:focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none text-gray-900 dark:text-slate-100 bg-white dark:bg-slate-800 placeholder:text-gray-400 dark:placeholder:text-slate-500"
                   placeholder="Tell us about your project or inquiry..."
                 />
               </div>
 
               {submitStatus === "success" && (
-                <div className="p-4 bg-green-50 border border-green-200 rounded-lg flex items-center space-x-2 text-green-800">
+                <div className="p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg flex items-center space-x-2 text-green-800 dark:text-green-300 transition-colors">
                   <CheckCircle className="h-5 w-5" />
                   <span>Message sent successfully! We&apos;ll get back to you soon.</span>
                 </div>
               )}
 
               {submitStatus === "error" && (
-                <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
+                <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-800 dark:text-red-300 transition-colors">
                   <span>
                     There was an error sending your message. Please try again or
                     email us directly at flockr@flockrlabs.com
