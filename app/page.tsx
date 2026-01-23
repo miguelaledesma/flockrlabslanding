@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   Sparkles,
@@ -30,21 +31,25 @@ export default function Home() {
       name: "A1 Designing",
       role: "Custom CRM & Operations",
       content: "The custom CRM Flockr built for us changed everything. We can finally track every lead from the first call to the final design, and see our entire operation in one dashboard.",
+      image: "/a1designing.png"
     },
     {
       name: "EZ Floorz and More",
       role: "Lead Management System",
       content: "Managing flooring leads used to be a nightmare of spreadsheets. Now we can see exactly where every job stands and our field operations have never been smoother.",
+      image: "/ezfloors.png"
     },
     {
       name: "HeyRuby",
       role: "Trucking Operations System",
       content: "They built a system that handles our fleet's documentation and lead tracking perfectly. It gives us a bird's-eye view of our entire operation in real-time.",
+      image: "/heyruby.png"
     },
     {
       name: "SITH Athletics",
       role: "Fashion Brand Operations",
       content: "As a fast-growing fashion brand, managing our drops and customer leads was getting complex. Flockr built custom operational tools that help us manage everything from production leads to warehouse fulfillment perfectly.",
+      image: "/sith.png"
     },
   ];
 
@@ -123,7 +128,18 @@ export default function Home() {
                   &quot;{review.content}&quot;
                 </p>
                 <div className="flex items-center gap-3">
-                  <div className="h-1 w-8 bg-blue-600 rounded-full" />
+                  {review.image ? (
+                    <div className="h-10 w-10 rounded-full overflow-hidden border border-slate-100 bg-slate-50 relative">
+                      <Image
+                        src={review.image}
+                        alt={review.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div className="h-1 w-8 bg-blue-600 rounded-full" />
+                  )}
                   <div>
                     <p className="font-bold text-slate-900 text-sm">{review.name}</p>
                     <p className="text-slate-400 text-[11px] font-bold uppercase tracking-wider">{review.role}</p>
@@ -228,6 +244,53 @@ export default function Home() {
                 </div>
                 <h3 className="font-bold text-slate-900 mb-3">{service.title}</h3>
                 <p className="text-slate-500 text-sm leading-relaxed font-medium">{service.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-32 bg-white">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl font-bold text-slate-900 mb-4 tracking-tight">Common Questions</h2>
+            <p className="text-slate-500 font-medium text-lg">Everything you need to know about working with us.</p>
+          </div>
+
+          <div className="space-y-6">
+            {[
+              {
+                q: "How much does a typical project cost?",
+                a: "Our projects are billed at a standard rate of $300/hr. Small business projects typically range between $2,000 and $10,000, while mid-size business solutions usually range from $10,000 to $75,000. For enterprise-level projects, please contact us for a custom consultation and quote."
+              },
+              {
+                q: "How do we get started?",
+                a: "It starts with a simple conversation. We'll meet (virtually or in person) to discuss your business needs, look at your current setup, and determine if we're the right fit for your goals."
+              },
+              {
+                q: "How long does a project usually take?",
+                a: "Most websites and custom CRMs are delivered within 2 to 4 weeks. We prioritize speed and quality so you can start seeing the benefits of your new technology as soon as possible."
+              },
+              {
+                q: "Do I need to be 'tech-savvy' to work with you?",
+                a: "Not at all. We handle all the technical heavy lifting and explain everything in plain English. Our goal is to make technology a tool for your growth, not a source of stress."
+              },
+              {
+                q: "What kind of support do you offer after launch?",
+                a: "We don't just build and disappear. Every project includes a walkthrough of your new system and 30 days of priority support to ensure everything is running perfectly."
+              }
+            ].map((faq, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="p-8 rounded-[2rem] border border-slate-100 bg-slate-50/30 hover:bg-white hover:border-blue-100 hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300"
+              >
+                <h3 className="text-lg font-bold text-slate-900 mb-3">{faq.q}</h3>
+                <p className="text-slate-600 leading-relaxed font-medium">{faq.a}</p>
               </motion.div>
             ))}
           </div>
