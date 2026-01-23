@@ -35,10 +35,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Determine the "from" address
+    // Use verified domain email (flockr@flockrlabs.com) or override via env
+    // To verify a domain: https://resend.com/domains
+    const fromAddress = process.env.RESEND_FROM_EMAIL || "flockr@flockrlabs.com";
+    const toAddress = process.env.RESEND_TO_EMAIL || "flockr@flockrlabs.com";
+
     // Send email using Resend
     const { data, error } = await resend.emails.send({
-      from: "Flockr Labs <onboarding@resend.dev>", // You'll need to verify a domain in Resend to use a custom from address
-      to: "flockr@flockrlabs.com",
+      from: fromAddress,
+      to: toAddress,
       replyTo: email,
       subject: `Contact Form: ${subject}`,
       text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
@@ -54,18 +60,34 @@ export async function POST(request: NextRequest) {
           </div>
           <div style="margin: 20px 0; padding: 15px; background-color: #f5f5f5; border-radius: 5px;">
             <h3 style="margin-top: 0;">Message:</h3>
-            <p style="white-space: pre-wrap;">${message}</p>
+            <p style="white-space: pre-wrap;">${message.replace(/\n/g, '<br>')}</p>
           </div>
         </div>
       `,
     });
 
     if (error) {
-      console.error("Resend API error:", error);
+      console.error("Resend API error:", JSON.stringify(error, null, 2));
+      console.error("Error type:", typeof error);
+      console.error("Error details:", error);
+      
+      // Check for domain restriction error
+      const errorMessage = error?.message || "Unknown error occurred";
+      let userMessage = errorMessage;
+      
+      if (errorMessage.includes("domain restriction") || errorMessage.includes("resend.dev")) {
+        userMessage = "Email domain not verified. The contact form requires a verified domain in Resend. Please email us directly at flockr@flockrlabs.com or contact the site administrator.";
+        console.error("Domain restriction error - need to verify a domain in Resend");
+        console.error("To fix: Verify a domain at https://resend.com/domains and set RESEND_FROM_EMAIL in .env.local");
+      }
+      
       return NextResponse.json(
         { 
           error: "Failed to send email",
-          message: "There was an error sending your message. Please try again or email us directly at flockr@flockrlabs.com"
+          message: userMessage.includes("Please email us directly") 
+            ? userMessage 
+            : `There was an error sending your message: ${userMessage}. Please try again or email us directly at flockr@flockrlabs.com`,
+          details: process.env.NODE_ENV === "development" ? error : undefined
         },
         { status: 500 }
       );
@@ -80,11 +102,16 @@ export async function POST(request: NextRequest) {
     // Log the error details for debugging
     if (error instanceof Error) {
       console.error("Error details:", error.message, error.stack);
+    } else {
+      console.error("Unknown error type:", error);
     }
+    
+    const errorMessage = error instanceof Error ? error.message : "An unexpected error occurred";
     return NextResponse.json(
       { 
         error: "Failed to send email",
-        message: "There was an error sending your message. Please try again or email us directly at flockr@flockrlabs.com"
+        message: `There was an error sending your message: ${errorMessage}. Please try again or email us directly at flockr@flockrlabs.com`,
+        details: process.env.NODE_ENV === "development" ? (error instanceof Error ? error.stack : String(error)) : undefined
       },
       { status: 500 }
     );

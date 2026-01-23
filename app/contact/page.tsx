@@ -38,13 +38,21 @@ export default function Contact() {
         body: JSON.stringify(formData),
       });
 
+      const data = await response.json();
+      
       if (response.ok) {
         setSubmitStatus("success");
         setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
-        const data = await response.json();
         console.error("Form submission error:", data);
         setSubmitStatus("error");
+        // Store error message for display
+        if (data.message) {
+          console.error("Error message:", data.message);
+        }
+        if (data.details) {
+          console.error("Error details:", data.details);
+        }
       }
     } catch (error) {
       setSubmitStatus("error");

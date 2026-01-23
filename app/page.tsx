@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 import {
   ArrowRight,
   Sparkles,
@@ -22,10 +23,17 @@ import {
   Boxes,
   CheckCircle2,
   Rocket,
+  ChevronDown,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Home() {
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  const toggleFaq = (index: number) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
+
   const reviews = [
     {
       name: "A1 Designing",
@@ -152,23 +160,23 @@ export default function Home() {
       </section>
 
       {/* Bento Grid - Refined & Minimal */}
-      <section className="py-32">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-4 auto-rows-[240px]">
+      <section className="py-16 md:py-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-3 md:gap-4 auto-rows-[200px] md:auto-rows-[240px]">
             {/* Featured Box */}
             <motion.div
               whileHover={{ y: -2 }}
-              className="md:col-span-2 lg:row-span-2 bg-slate-900 dark:bg-slate-800 rounded-[2.5rem] p-12 text-white flex flex-col justify-between relative overflow-hidden transition-colors"
+              className="md:col-span-2 lg:row-span-2 bg-slate-900 dark:bg-slate-800 rounded-2xl md:rounded-[2.5rem] p-6 sm:p-8 md:p-12 text-white flex flex-col justify-between relative overflow-hidden transition-colors min-h-[280px] md:min-h-0"
             >
               <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/20 dark:bg-blue-500/20 blur-[100px]" />
               <div className="relative z-10">
-                <Rocket className="h-8 w-8 mb-8 text-blue-400 dark:text-blue-300 transition-colors" />
-                <h3 className="text-4xl font-bold mb-4 tracking-tight">Custom <br />Solutions</h3>
-                <p className="text-slate-400 dark:text-slate-300 text-lg leading-relaxed max-w-xs transition-colors">We don&apos;t do generic. We build tools specifically for your workflow.</p>
+                <Rocket className="h-6 w-6 sm:h-8 sm:w-8 mb-4 sm:mb-6 md:mb-8 text-blue-400 dark:text-blue-300 transition-colors" />
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 tracking-tight">Custom <br />Solutions</h3>
+                <p className="text-slate-400 dark:text-slate-300 text-sm sm:text-base md:text-lg leading-relaxed max-w-xs transition-colors">We don&apos;t do generic. We build tools specifically for your workflow.</p>
               </div>
-              <div className="relative z-10 flex flex-wrap gap-2">
+              <div className="relative z-10 flex flex-wrap gap-2 mt-4">
                 {["CRMs", "Operations", "AI", "Mobile"].map(tag => (
-                  <span key={tag} className="px-4 py-1.5 rounded-full bg-white/10 dark:bg-white/20 text-xs font-bold uppercase tracking-wider transition-colors">{tag}</span>
+                  <span key={tag} className="px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-white/10 dark:bg-white/20 text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-colors">{tag}</span>
                 ))}
               </div>
             </motion.div>
@@ -176,52 +184,52 @@ export default function Home() {
             {/* AI Box */}
             <motion.div
               whileHover={{ y: -2 }}
-              className="md:col-span-2 bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 p-10 flex flex-col justify-between group hover:border-blue-100 dark:hover:border-blue-800 transition-colors"
+              className="md:col-span-2 bg-white dark:bg-slate-900 rounded-2xl md:rounded-[2.5rem] border border-slate-100 dark:border-slate-800 p-6 sm:p-8 md:p-10 flex flex-col justify-between group hover:border-blue-100 dark:hover:border-blue-800 transition-colors min-h-[180px] md:min-h-0"
             >
-              <div className="flex justify-between items-start">
-                <div className="h-10 w-10 rounded-xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center transition-colors">
-                  <Bot className="h-5 w-5 text-blue-600 dark:text-blue-400 transition-colors" />
+              <div className="flex justify-between items-start mb-4">
+                <div className="h-8 w-8 sm:h-10 sm:w-10 rounded-xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center transition-colors">
+                  <Bot className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 dark:text-blue-400 transition-colors" />
                 </div>
-                <div className="px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-900/30 text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest transition-colors">Active</div>
+                <div className="px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-emerald-50 dark:bg-emerald-900/30 text-[9px] sm:text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest transition-colors">Active</div>
               </div>
               <div>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100 mb-2 transition-colors">AI Workflows</h3>
-                <p className="text-slate-500 dark:text-slate-400 text-sm font-medium transition-colors">Modernize your business with automated AI agents and smart document processing.</p>
+                <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-slate-100 mb-2 transition-colors">AI Workflows</h3>
+                <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium transition-colors">Modernize your business with automated AI agents and smart document processing.</p>
               </div>
             </motion.div>
 
             {/* Industries Box */}
             <motion.div
               whileHover={{ y: -2 }}
-              className="md:col-span-1 bg-slate-50/50 dark:bg-slate-900/50 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 p-10 flex flex-col justify-between transition-colors"
+              className="md:col-span-1 bg-slate-50/50 dark:bg-slate-900/50 rounded-2xl md:rounded-[2.5rem] border border-slate-100 dark:border-slate-800 p-6 sm:p-8 md:p-10 flex flex-col justify-between transition-colors min-h-[180px] md:min-h-0"
             >
-              <Building2 className="h-6 w-6 text-slate-400 dark:text-slate-500 transition-colors" />
-              <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100 leading-tight transition-colors">Industries <br />We Support</h3>
-              <p className="text-slate-400 dark:text-slate-500 text-xs font-bold uppercase tracking-tighter transition-colors">Landscaping to Construction</p>
+              <Building2 className="h-5 w-5 sm:h-6 sm:w-6 text-slate-400 dark:text-slate-500 transition-colors mb-2" />
+              <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 leading-tight transition-colors">Industries <br />We Support</h3>
+              <p className="text-slate-400 dark:text-slate-500 text-[10px] sm:text-xs font-bold uppercase tracking-tighter transition-colors mt-2">Landscaping to Construction</p>
             </motion.div>
 
             {/* Trust Box */}
             <motion.div
               whileHover={{ y: -2 }}
-              className="md:col-span-1 bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 p-10 flex flex-col justify-between hover:border-blue-100 dark:hover:border-blue-800 transition-colors"
+              className="md:col-span-1 bg-white dark:bg-slate-900 rounded-2xl md:rounded-[2.5rem] border border-slate-100 dark:border-slate-800 p-6 sm:p-8 md:p-10 flex flex-col justify-between hover:border-blue-100 dark:hover:border-blue-800 transition-colors min-h-[180px] md:min-h-0"
             >
-              <CheckCircle2 className="h-6 w-6 text-blue-600 dark:text-blue-400 transition-colors" />
-              <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100 transition-colors">Zero Jargon.</h3>
-              <p className="text-slate-500 dark:text-slate-400 text-sm font-medium transition-colors">Clear communication, no hidden fees.</p>
+              <CheckCircle2 className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600 dark:text-blue-400 transition-colors mb-2" />
+              <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 transition-colors">Zero Jargon.</h3>
+              <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium transition-colors mt-2">Clear communication, no hidden fees.</p>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* The Toolkit - Ultra Clean Grid */}
-      <section className="py-32 bg-slate-50/30 dark:bg-slate-900/30 transition-colors">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="max-w-2xl mb-24">
-            <h2 className="text-4xl font-bold text-slate-900 dark:text-slate-100 mb-6 tracking-tight transition-colors">The Toolkit</h2>
-            <p className="text-lg text-slate-500 dark:text-slate-400 font-medium transition-colors">Specialized software designed for the growth of local businesses.</p>
+      <section className="py-16 md:py-32 bg-slate-50/30 dark:bg-slate-900/30 transition-colors">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="max-w-2xl mb-12 md:mb-24">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4 sm:mb-6 tracking-tight transition-colors">The Toolkit</h2>
+            <p className="text-base md:text-lg text-slate-500 dark:text-slate-400 font-medium transition-colors">Specialized software designed for the growth of local businesses.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8 md:gap-x-12 md:gap-y-16">
             {[
               { icon: Globe, title: "Modern Websites", desc: "Fast, mobile-ready sites built for conversion." },
               { icon: Database, title: "Custom CRMs", desc: "Tailored lead and operation management systems." },
@@ -239,11 +247,11 @@ export default function Home() {
                 viewport={{ once: true }}
                 className="flex flex-col group"
               >
-                <div className="h-10 w-10 mb-6 flex items-center justify-center rounded-lg bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm group-hover:border-blue-200 dark:group-hover:border-blue-700 transition-colors">
-                  <service.icon className="h-5 w-5 text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
+                <div className="h-8 w-8 sm:h-10 sm:w-10 mb-4 sm:mb-6 flex items-center justify-center rounded-lg bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm group-hover:border-blue-200 dark:group-hover:border-blue-700 transition-colors">
+                  <service.icon className="h-4 w-4 sm:h-5 sm:w-5 text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
                 </div>
-                <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-3 transition-colors">{service.title}</h3>
-                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed font-medium transition-colors">{service.desc}</p>
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 mb-2 sm:mb-3 transition-colors">{service.title}</h3>
+                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-medium transition-colors">{service.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -287,10 +295,36 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="p-8 rounded-[2rem] border border-slate-100 dark:border-slate-800 bg-slate-50/30 dark:bg-slate-900/30 hover:bg-white dark:hover:bg-slate-900 hover:border-blue-100 dark:hover:border-blue-800 hover:shadow-xl hover:shadow-blue-500/5 dark:hover:shadow-blue-500/10 transition-all duration-300"
+                className="rounded-[2rem] border border-slate-100 dark:border-slate-800 bg-slate-50/30 dark:bg-slate-900/30 hover:bg-white dark:hover:bg-slate-900 hover:border-blue-100 dark:hover:border-blue-800 hover:shadow-xl hover:shadow-blue-500/5 dark:hover:shadow-blue-500/10 transition-all duration-300 overflow-hidden"
               >
-                <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-3 transition-colors">{faq.q}</h3>
-                <p className="text-slate-600 dark:text-slate-300 leading-relaxed font-medium transition-colors">{faq.a}</p>
+                <button
+                  onClick={() => toggleFaq(i)}
+                  className="w-full p-8 text-left flex items-center justify-between gap-4 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500/50 rounded-[2rem]"
+                >
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100 transition-colors pr-4">{faq.q}</h3>
+                  <motion.div
+                    animate={{ rotate: openFaq === i ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="flex-shrink-0"
+                  >
+                    <ChevronDown className="h-5 w-5 text-slate-400 dark:text-slate-500 transition-colors" />
+                  </motion.div>
+                </button>
+                <AnimatePresence>
+                  {openFaq === i && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-8 pb-8 pt-0">
+                        <p className="text-slate-600 dark:text-slate-300 leading-relaxed font-medium transition-colors">{faq.a}</p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
             ))}
           </div>
