@@ -1,0 +1,27 @@
+<svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Clean, minimal wordmark style like Google, Meta, Stripe -->
+  <defs>
+    <linearGradient id="modernGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2563EB"/>
+      <stop offset="100%" style="stop-color:#7C3AED"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Simple geometric icon - abstract interconnected nodes -->
+  <g transform="translate(60, 100)">
+    <!-- Three chevron-like shapes suggesting forward movement and collaboration -->
+    <path d="M 0 50 L 20 30 L 40 50 L 20 40 Z" fill="#2563EB"/>
+    <path d="M 25 50 L 45 30 L 65 50 L 45 40 Z" fill="#4F46E5" opacity="0.85"/>
+    <path d="M 50 50 L 70 30 L 90 50 L 70 40 Z" fill="#7C3AED" opacity="0.7"/>
+  </g>
+  
+  <!-- Wordmark -->
+  <text x="200" y="170" font-family="'Helvetica Neue', Arial, sans-serif" font-size="72" font-weight="700" fill="#0F172A" letter-spacing="-2">
+    flockr
+  </text>
+  
+  <!-- Subtle "labs" -->
+  <text x="485" y="170" font-family="'Helvetica Neue', Arial, sans-serif" font-size="72" font-weight="300" fill="#64748B" letter-spacing="-2">
+    labs
+  </text>
+</svg>

@@ -1,0 +1,16 @@
+{
+  "name": "Flockr Labs",
+  "short_name": "Flockr Labs",
+  "description": "Technology Help for Small Businesses",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563EB",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
