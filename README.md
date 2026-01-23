@@ -11,7 +11,8 @@ A modern, FAANG-inspired landing page for Flockr Labs LLC, built with Next.js, T
   - Contact page with email form
 - **Responsive**: Fully responsive design that works on all devices
 - **Animations**: Smooth animations using Framer Motion
-- **Contact Form**: Email functionality using Nodemailer
+- **Contact Form**: Email functionality using Resend
+- **Dark Mode**: Full dark mode support with theme toggle
 
 ## Getting Started
 
@@ -31,7 +32,12 @@ npm install
 cp .env.example .env.local
 ```
 
-Edit `.env.local` with your SMTP credentials for the contact form.
+Edit `.env.local` with your Resend API key:
+```
+RESEND_API_KEY=re_your_api_key_here
+```
+
+Get your API key from https://resend.com/api-keys
 
 ### Running the Development Server
 
@@ -50,20 +56,16 @@ npm start
 
 ## Email Configuration
 
-The contact form requires SMTP credentials to send emails. You have several options:
+The contact form uses Resend to send emails. To set it up:
 
-### Option 1: Gmail (Development)
-1. Enable 2-factor authentication on your Gmail account
-2. Generate an App Password: https://myaccount.google.com/apppasswords
-3. Use your Gmail address as `SMTP_USER` and the App Password as `SMTP_PASSWORD`
+1. Sign up at https://resend.com (free tier: 3,000 emails/month)
+2. Get your API key from https://resend.com/api-keys
+3. Add it to your `.env.local` file:
+   ```
+   RESEND_API_KEY=re_your_api_key_here
+   ```
 
-### Option 2: Resend (Recommended for Production)
-1. Sign up at https://resend.com
-2. Get your API key
-3. Update the contact API route to use Resend instead of Nodemailer
-
-### Option 3: SendGrid or AWS SES
-Similar setup, just update the SMTP configuration in `.env.local`
+For production (Railway, Vercel, etc.), add `RESEND_API_KEY` as an environment variable in your hosting platform's settings.
 
 ## Project Structure
 
@@ -93,7 +95,8 @@ Similar setup, just update the SMTP configuration in `.env.local`
 - **TypeScript**: Type safety
 - **Tailwind CSS**: Utility-first CSS framework
 - **Framer Motion**: Animation library
-- **Nodemailer**: Email sending
+- **Resend**: Email sending service
+- **next-themes**: Dark mode theme management
 - **Lucide React**: Icon library
 
 ## License

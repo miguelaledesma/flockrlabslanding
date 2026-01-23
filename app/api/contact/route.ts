@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: NextRequest) {
   try {
@@ -13,45 +15,31 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create transporter - using Gmail as an example
-    // For production, you should use environment variables for credentials
-    // and consider using a service like SendGrid, AWS SES, or Resend
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST || "smtp.gmail.com",
-      port: parseInt(process.env.SMTP_PORT || "587"),
-      secure: false, // true for 465, false for other ports
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASSWORD,
-      },
-    });
-
-    // If no SMTP credentials are set, return an error message
-    if (!process.env.SMTP_USER || !process.env.SMTP_PASSWORD) {
-      console.error("SMTP credentials not configured");
-      // In development, you might want to log the email instead
-      console.log("Email would be sent to flockr@flockrlabs.com:", {
+    // Check if Resend API key is configured
+    if (!process.env.RESEND_API_KEY) {
+      console.error("Resend API key not configured");
+      console.log("Contact form submission (email service not configured):", {
         name,
         email,
         subject,
         message,
+        timestamp: new Date().toISOString(),
       });
 
       return NextResponse.json(
         {
-          error:
-            "Email service not configured. Please set SMTP environment variables.",
-          message: "Email service needs to be configured. Contact form data logged.",
+          error: "Email service not configured",
+          message: "The contact form is temporarily unavailable. Please email us directly at flockr@flockrlabs.com",
         },
-        { status: 500 }
+        { status: 503 }
       );
     }
 
-    // Send email
-    const info = await transporter.sendMail({
-      from: process.env.SMTP_FROM || `"${name}" <${email}>`,
-      replyTo: email,
+    // Send email using Resend
+    const { data, error } = await resend.emails.send({
+      from: "Flockr Labs <onboarding@resend.dev>", // You'll need to verify a domain in Resend to use a custom from address
       to: "flockr@flockrlabs.com",
+      replyTo: email,
       subject: `Contact Form: ${subject}`,
       text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
       html: `
@@ -72,14 +60,32 @@ export async function POST(request: NextRequest) {
       `,
     });
 
+    if (error) {
+      console.error("Resend API error:", error);
+      return NextResponse.json(
+        { 
+          error: "Failed to send email",
+          message: "There was an error sending your message. Please try again or email us directly at flockr@flockrlabs.com"
+        },
+        { status: 500 }
+      );
+    }
+
     return NextResponse.json(
-      { message: "Email sent successfully", messageId: info.messageId },
+      { message: "Email sent successfully", messageId: data?.id },
       { status: 200 }
     );
   } catch (error) {
     console.error("Error sending email:", error);
+    // Log the error details for debugging
+    if (error instanceof Error) {
+      console.error("Error details:", error.message, error.stack);
+    }
     return NextResponse.json(
-      { error: "Failed to send email" },
+      { 
+        error: "Failed to send email",
+        message: "There was an error sending your message. Please try again or email us directly at flockr@flockrlabs.com"
+      },
       { status: 500 }
     );
   }

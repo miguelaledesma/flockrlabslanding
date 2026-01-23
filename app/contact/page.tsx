@@ -42,6 +42,8 @@ export default function Contact() {
         setSubmitStatus("success");
         setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
+        const data = await response.json();
+        console.error("Form submission error:", data);
         setSubmitStatus("error");
       }
     } catch (error) {
