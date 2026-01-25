@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import {
   ArrowRight,
   Sparkles,
@@ -29,34 +29,72 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
   };
 
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!carouselRef.current) return;
+    setIsDragging(true);
+    setStartX(e.pageX - carouselRef.current.offsetLeft);
+    setScrollLeft(carouselRef.current.scrollLeft);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !carouselRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - carouselRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    carouselRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (!carouselRef.current) return;
+    setIsDragging(true);
+    setStartX(e.touches[0].pageX - carouselRef.current.offsetLeft);
+    setScrollLeft(carouselRef.current.scrollLeft);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging || !carouselRef.current) return;
+    const x = e.touches[0].pageX - carouselRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    carouselRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+
   const reviews = [
     {
       name: "A1 Designing",
       role: "Custom CRM & Operations",
-      content: "The custom CRM Flockr built for us changed everything. We can finally track every lead from the first call to the final design, and see our entire operation in one dashboard.",
+      content: "We needed a way to track our leads and keep operations organized. Flockr built us a custom CRM that does exactly that. Now we can see everything in one place instead of juggling spreadsheets and emails.",
       image: "/a1designing.png"
     },
     {
       name: "EZ Floorz and More",
-      role: "Lead Management System",
-      content: "Managing flooring leads used to be a nightmare of spreadsheets. Now we can see exactly where every job stands and our field operations have never been smoother.",
+      role: "Lead Management & Crew Scheduling",
+      content: "Managing leads, scheduling crews, and keeping track of jobs was chaos. Flockr built us a system that handles all of it. Our team actually knows what's happening now, and we're not double-booking crews anymore.",
       image: "/ezfloors.png"
     },
     {
       name: "HeyRuby",
-      role: "Trucking Operations System",
-      content: "They built a system that handles our fleet's documentation and lead tracking perfectly. It gives us a bird's-eye view of our entire operation in real-time.",
+      role: "Email & Document Management",
+      content: "Our email and document situation was a mess. Flockr helped us set up a system that actually makes sense. Everything's organized now, and we can find what we need when we need it.",
       image: "/heyruby.png"
     },
     {
       name: "SITH Athletics",
-      role: "Fashion Brand Operations",
-      content: "As a fast-growing fashion brand, managing our drops and customer leads was getting complex. Flockr built custom operational tools that help us manage everything from production leads to warehouse fulfillment perfectly.",
+      role: "E-commerce Launch & Automation",
+      content: "We had products but no idea how to get them online. Flockr got our store up and running, set up our products, and automated everything so orders just flow through. It's been a game changer.",
       image: "/sith.png"
     },
   ];
@@ -126,11 +164,28 @@ export default function Home() {
       {/* Testimonial Section - Clean Marquee */}
       <section className="py-20 border-y border-slate-50 dark:border-slate-800 bg-slate-50/20 dark:bg-slate-900/20 overflow-hidden transition-colors">
         <div className="flex flex-col gap-12">
-          <div className="flex space-x-8 animate-marquee whitespace-nowrap">
+          <div
+            ref={carouselRef}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleMouseUp}
+            className={`flex space-x-8 whitespace-nowrap overflow-x-auto scrollbar-hide ${
+              isDragging ? "cursor-grabbing" : "cursor-grab"
+            } ${!isDragging ? "animate-marquee" : ""}`}
+            style={{
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+              WebkitOverflowScrolling: "touch",
+            }}
+          >
             {[...reviews, ...reviews].map((review, i) => (
               <div
                 key={i}
-                className="inline-block w-[400px] bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.02)] dark:shadow-[0_2px_15px_-3px_rgba(0,0,0,0.3)] transition-colors"
+                className="inline-block w-[85vw] sm:w-[400px] flex-shrink-0 bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-2xl sm:rounded-3xl border border-slate-100 dark:border-slate-800 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.02)] dark:shadow-[0_2px_15px_-3px_rgba(0,0,0,0.3)] transition-colors"
               >
                 <p className="text-slate-600 dark:text-slate-300 text-base whitespace-normal mb-6 font-medium leading-relaxed italic transition-colors">
                   &quot;{review.content}&quot;

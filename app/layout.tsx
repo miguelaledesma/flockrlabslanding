@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     siteName: "Flockr Labs",
     images: [
       {
-        url: "https://flockrlabs.com/flockr.png",
+        url: "https://flockrlabs.com/flockr.png?v=2",
         width: 1200,
         height: 630,
         alt: "Flockr Labs Logo",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Flockr Labs - Technology Help for Small Businesses",
     description: "Affordable tech solutions for small businesses. From websites to AI automation—we make technology simple.",
-    images: ["https://flockrlabs.com/flockr.png"],
+    images: ["https://flockrlabs.com/flockr.png?v=2"],
   },
   icons: {
     icon: [
