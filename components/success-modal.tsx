@@ -34,14 +34,17 @@ export function SuccessModal({ isOpen, onClose }: SuccessModalProps) {
           background-color: ${color};
           border-radius: ${Math.random() > 0.5 ? "50%" : "0"};
           pointer-events: none;
-          z-index: 9999;
+          z-index: 10000;
           animation: confetti-fall ${duration}s ease-out ${delay}s forwards;
+          will-change: transform, opacity;
         `;
 
         document.body.appendChild(confetti);
 
         setTimeout(() => {
-          confetti.remove();
+          if (confetti.parentNode) {
+            confetti.remove();
+          }
         }, (duration + delay) * 1000);
       }, i * 20);
     }
@@ -50,7 +53,11 @@ export function SuccessModal({ isOpen, onClose }: SuccessModalProps) {
   // Trigger confetti effect
   useEffect(() => {
     if (isOpen) {
-      createConfetti();
+      // Small delay to ensure modal is rendered
+      const timer = setTimeout(() => {
+        createConfetti();
+      }, 100);
+      return () => clearTimeout(timer);
     }
   }, [isOpen]);
 
@@ -65,11 +72,11 @@ export function SuccessModal({ isOpen, onClose }: SuccessModalProps) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={onClose}
-              className="fixed inset-0 bg-black/50 dark:bg-black/70 z-50 backdrop-blur-sm"
+              className="fixed inset-0 bg-black/50 dark:bg-black/70 z-[60] backdrop-blur-sm"
             />
             
             {/* Modal */}
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 pointer-events-none">
+            <div className="fixed inset-0 z-[70] flex items-center justify-center p-3 sm:p-4 pointer-events-none">
               <motion.div
                 initial={{ opacity: 0, scale: 0.8, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}

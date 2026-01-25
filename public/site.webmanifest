@@ -8,7 +8,12 @@
   "theme_color": "#2563EB",
   "icons": [
     {
-      "src": "/icon.svg",
+      "src": "/flockr.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo.svg",
       "sizes": "any",
       "type": "image/svg+xml"
     }

@@ -16,9 +16,9 @@ export const metadata: Metadata = {
     siteName: "Flockr Labs",
     images: [
       {
-        url: "/flockr.png",
-        width: 800,
-        height: 300,
+        url: "https://flockrlabs.com/flockr.png",
+        width: 1200,
+        height: 630,
         alt: "Flockr Labs Logo",
       },
     ],
@@ -29,11 +29,16 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Flockr Labs - Technology Help for Small Businesses",
     description: "Affordable tech solutions for small businesses. From websites to AI automation—we make technology simple.",
-    images: ["/flockr.png"],
+    images: ["https://flockrlabs.com/flockr.png"],
   },
   icons: {
-    icon: "/flockr.png",
-    apple: "/flockr.png",
+    icon: [
+      { url: "/flockr.png", sizes: "any" },
+      { url: "/logo.svg", type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: "/flockr.png", sizes: "180x180" },
+    ],
   },
 };
 
