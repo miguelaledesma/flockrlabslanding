@@ -19,14 +19,15 @@ export function Navigation() {
     setMounted(true);
   }, []);
 
+  // Memoize theme check to prevent unnecessary re-renders
+  const isDarkMode = mounted && resolvedTheme === "dark";
+
   const navItems = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
   ];
 
-  // Use resolvedTheme to handle system preference, default to light if not mounted
-  const isDarkMode = mounted && resolvedTheme === "dark";
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-gray-200 dark:border-slate-800 transition-colors">
@@ -45,6 +46,7 @@ export function Navigation() {
                 maxWidth: '200px'
               }}
               priority
+              sizes="(max-width: 768px) 150px, 200px"
             />
           </Link>
 

@@ -32,6 +32,8 @@ export function Footer() {
                 width: 'auto',
                 maxWidth: '160px'
               }}
+              loading="lazy"
+              sizes="160px"
             />
             <p className="text-gray-600 dark:text-slate-300 transition-colors">
               Flockr Labs LLC - Making technology simple and affordable for small businesses and entrepreneurs. Big tech experience, small business focus.

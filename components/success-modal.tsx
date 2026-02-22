@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, X } from "lucide-react";
 
@@ -10,55 +10,88 @@ interface SuccessModalProps {
 }
 
 export function SuccessModal({ isOpen, onClose }: SuccessModalProps) {
+  const confettiRef = useRef<Set<HTMLDivElement>>(new Set());
+  const animationFrameRef = useRef<number | null>(null);
+
   const createConfetti = () => {
     const colors = ["#3b82f6", "#8b5cf6", "#ec4899", "#f59e0b", "#10b981"];
-    // Reduce confetti count on mobile for better performance
+    // Further reduce confetti count for better performance
     const isMobile = window.innerWidth < 640;
-    const confettiCount = isMobile ? 30 : 50;
+    const confettiCount = isMobile ? 20 : 35; // Reduced from 30/50
 
-    for (let i = 0; i < confettiCount; i++) {
+    // Use requestAnimationFrame for better performance
+    let created = 0;
+    const createNext = () => {
+      if (created >= confettiCount) return;
+
+      const confetti = document.createElement("div");
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      const size = Math.random() * 8 + 4; // Slightly smaller
+      const startX = Math.random() * window.innerWidth;
+      const duration = Math.random() * 1.5 + 1.5; // Shorter duration
+      const delay = Math.random() * 0.3;
+
+      confetti.style.cssText = `
+        position: fixed;
+        top: -10px;
+        left: ${startX}px;
+        width: ${size}px;
+        height: ${size}px;
+        background-color: ${color};
+        border-radius: ${Math.random() > 0.5 ? "50%" : "0"};
+        pointer-events: none;
+        z-index: 10000;
+        animation: confetti-fall ${duration}s ease-out ${delay}s forwards;
+        will-change: transform, opacity;
+      `;
+
+      document.body.appendChild(confetti);
+      confettiRef.current.add(confetti);
+
+      // Cleanup after animation
       setTimeout(() => {
-        const confetti = document.createElement("div");
-        const color = colors[Math.floor(Math.random() * colors.length)];
-        const size = Math.random() * 10 + 5;
-        const startX = Math.random() * window.innerWidth;
-        const duration = Math.random() * 2 + 2;
-        const delay = Math.random() * 0.5;
+        if (confetti.parentNode) {
+          confetti.remove();
+          confettiRef.current.delete(confetti);
+        }
+      }, (duration + delay) * 1000);
 
-        confetti.style.cssText = `
-          position: fixed;
-          top: -10px;
-          left: ${startX}px;
-          width: ${size}px;
-          height: ${size}px;
-          background-color: ${color};
-          border-radius: ${Math.random() > 0.5 ? "50%" : "0"};
-          pointer-events: none;
-          z-index: 10000;
-          animation: confetti-fall ${duration}s ease-out ${delay}s forwards;
-          will-change: transform, opacity;
-        `;
+      created++;
+      if (created < confettiCount) {
+        animationFrameRef.current = requestAnimationFrame(createNext);
+      }
+    };
 
-        document.body.appendChild(confetti);
-
-        setTimeout(() => {
-          if (confetti.parentNode) {
-            confetti.remove();
-          }
-        }, (duration + delay) * 1000);
-      }, i * 20);
-    }
+    animationFrameRef.current = requestAnimationFrame(createNext);
   };
 
-  // Trigger confetti effect
+  // Trigger confetti effect with cleanup
   useEffect(() => {
-    if (isOpen) {
-      // Small delay to ensure modal is rendered
-      const timer = setTimeout(() => {
-        createConfetti();
-      }, 100);
-      return () => clearTimeout(timer);
-    }
+    if (!isOpen) return;
+    
+    // Capture refs at effect start
+    const currentConfettiRef = confettiRef;
+    const currentAnimationFrameRef = animationFrameRef;
+    
+    const timer = setTimeout(() => {
+      createConfetti();
+    }, 100);
+    
+    return () => {
+      clearTimeout(timer);
+      // Cleanup all confetti elements
+      currentConfettiRef.current.forEach(confetti => {
+        if (confetti.parentNode) {
+          confetti.remove();
+        }
+      });
+      currentConfettiRef.current.clear();
+      // Cancel any pending animation frames
+      const frameId = currentAnimationFrameRef.current;
+      if (frameId) {
+        cancelAnimationFrame(frameId);
+      }
+    };
   }, [isOpen]);
 
   return (
