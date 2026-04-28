@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useRef, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback } from "react";
 import {
   ArrowRight,
   Sparkles,
@@ -29,74 +29,16 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-  const carouselRef = useRef<HTMLDivElement>(null);
 
   const toggleFaq = useCallback((index: number) => {
     setOpenFaq(prev => prev === index ? null : index);
   }, []);
 
-  const handleMouseDown = useCallback((e: React.MouseEvent) => {
-    if (!carouselRef.current) return;
-    setIsDragging(true);
-    setStartX(e.pageX - carouselRef.current.offsetLeft);
-    setScrollLeft(carouselRef.current.scrollLeft);
-  }, []);
-
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    if (!isDragging || !carouselRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - carouselRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    carouselRef.current.scrollLeft = scrollLeft - walk;
-  }, [isDragging, startX, scrollLeft]);
-
-  const handleMouseUp = useCallback(() => {
-    setIsDragging(false);
-  }, []);
-
-  const handleTouchStart = useCallback((e: React.TouchEvent) => {
-    if (!carouselRef.current) return;
-    setIsDragging(true);
-    setStartX(e.touches[0].pageX - carouselRef.current.offsetLeft);
-    setScrollLeft(carouselRef.current.scrollLeft);
-  }, []);
-
-  const handleTouchMove = useCallback((e: React.TouchEvent) => {
-    if (!isDragging || !carouselRef.current) return;
-    const x = e.touches[0].pageX - carouselRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    carouselRef.current.scrollLeft = scrollLeft - walk;
-  }, [isDragging, startX, scrollLeft]);
-
-
-  const reviews = useMemo(() => [
-    {
-      name: "A1 Designing",
-      role: "Custom CRM & Operations",
-      content: "We needed a way to track our leads and keep operations organized. Flockr built us a custom CRM that does exactly that. Now we can see everything in one place instead of juggling spreadsheets and emails.",
-      image: "/a1designing.png"
-    },
-    {
-      name: "EZ Floorz and More",
-      role: "Lead Management & Crew Scheduling",
-      content: "Managing leads, scheduling crews, and keeping track of jobs was chaos. Flockr built us a system that handles all of it. Our team actually knows what's happening now, and we're not double-booking crews anymore.",
-      image: "/ezfloors.png"
-    },
-    {
-      name: "HeyRuby",
-      role: "Email & Document Management",
-      content: "Our email and document situation was a mess. Flockr helped us set up a system that actually makes sense. Everything's organized now, and we can find what we need when we need it.",
-      image: "/heyruby.png"
-    },
-    {
-      name: "SITH Athletics",
-      role: "E-commerce Launch & Automation",
-      content: "We had products but no idea how to get them online. Flockr got our store up and running, set up our products, and automated everything so orders just flow through. It's been a game changer.",
-      image: "/sith.png"
-    },
+  const clients = useMemo(() => [
+    { name: "A1 Designing", image: "/a1designing.png" },
+    { name: "EZ Floorz and More", image: "/ezfloors.png" },
+    { name: "HeyRuby", image: "/heyruby.png" },
+    { name: "SITH Athletics", image: "/sith.png" },
   ], []);
 
   return (
@@ -105,7 +47,7 @@ export default function Home() {
       <section className="relative pt-48 pb-32 px-4 overflow-hidden">
         {/* Designer Background: Ultra-subtle grid + light mask */}
         <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-40 dark:opacity-20" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-40 dark:opacity-20" />
         </div>
 
         <div className="max-w-5xl mx-auto w-full">
@@ -114,30 +56,30 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-6xl md:text-8xl font-bold tracking-tight text-slate-900 dark:text-slate-100 mb-8 leading-[0.95] transition-colors"
+              className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-slate-100 mb-8 leading-[1.05] transition-colors"
             >
-              Technology for <br />
-              <span className="relative inline-block mt-2">
+              Custom software for <br className="hidden md:block" />
+              businesses{" "}
+              <span className="relative inline-block">
                 <span className="relative z-10 font-serif italic bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent px-2">
-                  YOUR
+                  outgrowing SaaS
                 </span>
                 <motion.span
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ duration: 0.8, delay: 0.8, ease: "circOut" }}
-                  className="absolute bottom-2 left-0 w-full h-[0.15em] bg-blue-100/80 dark:bg-blue-900/40 -z-0 origin-left rounded-full"
+                  className="absolute bottom-1 left-0 w-full h-[0.12em] bg-blue-100/80 dark:bg-blue-900/40 -z-0 origin-left rounded-full"
                 />
-              </span>{" "}
-              business.
+              </span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg md:text-xl text-slate-500 dark:text-slate-400 mb-12 max-w-2xl leading-relaxed font-medium transition-colors"
+              className="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-12 max-w-2xl leading-relaxed font-medium transition-colors"
             >
-              We build high-performance CRMs, custom operations software, and modern web experiences for businesses that value quality.
+              We design, build, and maintain CRMs, ops platforms, and AI workflows tailored to how your business actually runs — when HubSpot, QuickBooks, and the rest stop fitting. Engineering experience building at companies like Airbnb, HubSpot, and AI startups at every stage.
             </motion.p>
 
             <motion.div
@@ -148,12 +90,7 @@ export default function Home() {
             >
               <Link href="/contact">
                 <Button size="lg" className="h-12 px-8 text-sm font-semibold bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 dark:hover:bg-slate-200 text-white dark:text-slate-900 rounded-full transition-all shadow-sm">
-                  Get Started
-                </Button>
-              </Link>
-              <Link href="/about">
-                <Button size="lg" variant="outline" className="h-12 px-8 text-sm font-semibold border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-full transition-all">
-                  Our Process
+                  Book a 30-min strategy call
                 </Button>
               </Link>
             </motion.div>
@@ -161,64 +98,47 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonial Section - Clean Marquee */}
-      <section className="py-20 border-y border-slate-50 dark:border-slate-800 bg-slate-50/20 dark:bg-slate-900/20 overflow-hidden transition-colors">
-        <div className="flex flex-col gap-12">
-          <div
-            ref={carouselRef}
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUp}
-            onMouseLeave={handleMouseUp}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleMouseUp}
-            className={`flex space-x-8 whitespace-nowrap overflow-x-auto scrollbar-hide ${
-              isDragging ? "cursor-grabbing" : "cursor-grab"
-            } ${!isDragging ? "animate-marquee" : ""}`}
-            style={{
-              scrollbarWidth: "none",
-              msOverflowStyle: "none",
-              WebkitOverflowScrolling: "touch",
-            }}
+      {/* Logo Wall */}
+      <section className="py-20 border-y border-slate-50 dark:border-slate-800 bg-slate-50/20 dark:bg-slate-900/20 transition-colors">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center text-[11px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-10 transition-colors"
           >
-            {[...reviews, ...reviews].map((review, i) => (
+            Trusted by operators across SaaS, landscaping and home-remodeling services, retail, and athletics
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10 md:gap-x-12 items-center justify-items-center"
+          >
+            {clients.map((client) => (
               <div
-                key={i}
-                className="inline-block w-[85vw] sm:w-[400px] flex-shrink-0 bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-2xl sm:rounded-3xl border border-slate-100 dark:border-slate-800 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.02)] dark:shadow-[0_2px_15px_-3px_rgba(0,0,0,0.3)] transition-colors"
+                key={client.name}
+                className="relative h-12 md:h-14 w-full max-w-[180px] opacity-70 hover:opacity-100 transition-opacity"
               >
-                <p className="text-slate-600 dark:text-slate-300 text-base whitespace-normal mb-6 font-medium leading-relaxed italic transition-colors">
-                  &quot;{review.content}&quot;
-                </p>
-                <div className="flex items-center gap-3">
-                  {review.image ? (
-                    <div className="h-10 w-10 rounded-full overflow-hidden border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 relative transition-colors">
-                      <Image
-                        src={review.image}
-                        alt={review.name}
-                        fill
-                        className="object-cover"
-                        loading="lazy"
-                        sizes="(max-width: 640px) 40px, 40px"
-                      />
-                    </div>
-                  ) : (
-                    <div className="h-1 w-8 bg-blue-600 dark:bg-blue-400 rounded-full transition-colors" />
-                  )}
-                  <div>
-                    <p className="font-bold text-slate-900 dark:text-slate-100 text-sm transition-colors">{review.name}</p>
-                    <p className="text-slate-400 dark:text-slate-500 text-[11px] font-bold uppercase tracking-wider transition-colors">{review.role}</p>
-                  </div>
-                </div>
+                <Image
+                  src={client.image}
+                  alt={client.name}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 150px, 180px"
+                />
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Bento Grid - Refined & Minimal */}
       <section className="py-12 md:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <h2 className="sr-only">What sets Flockr apart</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-4 md:gap-4">
             {/* Featured Box */}
             <motion.div
@@ -341,7 +261,7 @@ export default function Home() {
             {[
               {
                 q: "How much does a typical project cost?",
-                a: "Our projects are billed at a standard rate of $300/hr. Small business projects typically range between $2,000 and $10,000, while mid-size business solutions usually range from $10,000 to $75,000. For enterprise-level projects, please contact us for a custom consultation and quote."
+                a: "Engagements typically start at $25K for scoped builds and scale into the six figures for multi-quarter platforms. We also offer aligned-incentive partnerships where we take a smaller base plus a revenue or profit share — best for operators who want a real partner, not just a vendor. Book a free 30-min call and we'll scope your specific situation."
               },
               {
                 q: "How do we get started?",
@@ -418,7 +338,7 @@ export default function Home() {
             <div className="flex flex-col items-center gap-6">
               <Link href="/contact">
                 <Button size="lg" className="h-16 px-12 text-lg font-bold bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white rounded-full transition-all shadow-[0_20px_40px_-15px_rgba(37,99,235,0.4)] dark:shadow-[0_20px_40px_-15px_rgba(59,130,246,0.3)]">
-                  Let&apos;s talk
+                  Book a strategy call
                 </Button>
               </Link>
               <a href="mailto:flockr@flockrlabs.com" className="text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-200 transition-colors font-bold uppercase tracking-widest text-[10px]">

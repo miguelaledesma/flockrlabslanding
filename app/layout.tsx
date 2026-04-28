@@ -5,21 +5,21 @@ import { Footer } from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
-  title: "Flockr Labs - Technology Help for Small Businesses",
-  description: "Affordable tech solutions for small businesses, local shops, and startups. From websites to online presence—we make technology simple. Advisors from FAANG companies.",
-  keywords: ["small business technology", "website design", "Shopify stores", "AI automation", "SEO", "local business", "startup consulting"],
+  metadataBase: new URL("https://flockrlabs.com"),
+  title: "Flockr Labs — Custom Software for Businesses Outgrowing SaaS",
+  description: "We design, build, and maintain CRMs, ops platforms, and AI workflows for growing businesses that have outgrown HubSpot, QuickBooks, and the rest. Engineering experience from Airbnb, HubSpot, and AI startups.",
   authors: [{ name: "Flockr Labs LLC" }],
   openGraph: {
-    title: "Flockr Labs - Technology Help for Small Businesses",
-    description: "Affordable tech solutions for small businesses. From websites to AI automation—we make technology simple.",
+    title: "Flockr Labs — Custom Software for Businesses Outgrowing SaaS",
+    description: "Custom CRMs, ops platforms, and AI workflows for growing businesses. Engineering experience from Airbnb, HubSpot, and AI startups.",
     url: "https://flockrlabs.com",
     siteName: "Flockr Labs",
     images: [
       {
-        url: "https://flockrlabs.com/flockr.png?v=2",
+        url: "/flockr.png?v=2",
         width: 1200,
         height: 630,
-        alt: "Flockr Labs Logo",
+        alt: "Flockr Labs",
       },
     ],
     locale: "en_US",
@@ -27,9 +27,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Flockr Labs - Technology Help for Small Businesses",
-    description: "Affordable tech solutions for small businesses. From websites to AI automation—we make technology simple.",
-    images: ["https://flockrlabs.com/flockr.png?v=2"],
+    title: "Flockr Labs — Custom Software for Businesses Outgrowing SaaS",
+    description: "Custom CRMs, ops platforms, and AI workflows for growing businesses. Engineering experience from Airbnb, HubSpot, and AI startups.",
+    images: ["/flockr.png?v=2"],
   },
   icons: {
     icon: [

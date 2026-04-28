@@ -12,6 +12,7 @@ export default function Contact() {
     email: "",
     subject: "",
     message: "",
+    website: "", // honeypot — humans don't fill this
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
@@ -44,7 +45,7 @@ export default function Contact() {
       
       if (response.ok) {
         setSubmitStatus("success");
-        setFormData({ name: "", email: "", subject: "", message: "" });
+        setFormData({ name: "", email: "", subject: "", message: "", website: "" });
         setIsSuccessModalOpen(true);
       } else {
         console.error("Form submission error:", data);
@@ -133,6 +134,19 @@ export default function Contact() {
             className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-gray-200 dark:border-slate-800 p-8 transition-colors"
           >
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Honeypot — hidden from humans, bots will fill it */}
+              <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: "1px", height: "1px", overflow: "hidden" }}>
+                <label htmlFor="website">Website (leave empty)</label>
+                <input
+                  type="text"
+                  id="website"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={formData.website}
+                  onChange={handleChange}
+                />
+              </div>
               <div>
                 <label
                   htmlFor="name"

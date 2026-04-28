@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Code2, Users, Target, TrendingUp } from "lucide-react";
 
 export default function About() {
@@ -18,11 +19,10 @@ export default function About() {
               About Flockr Labs
             </h1>
             <p className="text-xl text-gray-600 dark:text-slate-300 leading-relaxed transition-colors">
-              We&apos;re a team of experienced technologists who believe every
-              business deserves access to great technology.
-              From custom CRMs to complete business solutions, we help local
-              businesses, startups, and growing companies build tools that
-              actually work for them.
+              We&apos;re a small team of senior engineers who build the custom
+              systems growing businesses need when off-the-shelf tools stop
+              fitting. CRMs, ops platforms, AI workflows — designed and
+              shipped end-to-end for the way your business actually runs.
             </p>
           </motion.div>
         </div>
@@ -42,16 +42,16 @@ export default function About() {
                 Our Mission
               </h2>
               <p className="text-lg text-gray-600 dark:text-slate-300 leading-relaxed mb-4 transition-colors">
-                Our mission is simple: make technology accessible and affordable
-                for small businesses and entrepreneurs. Whether you&apos;re
-                opening your first location, updating your outdated website, or
-                launching your startup idea—we&apos;re here to help.
+                Most software is built for an average customer. Growing
+                businesses aren&apos;t average — they have specific workflows,
+                specific bottlenecks, and a specific way they win. We build for
+                that, not for the median spreadsheet.
               </p>
               <p className="text-lg text-gray-600 dark:text-slate-300 leading-relaxed transition-colors">
-                We believe great technology shouldn&apos;t be reserved for
-                Fortune 500 companies. Every business deserves a professional
-                online presence, efficient systems, and the tools to compete in
-                today&apos;s digital world.
+                The systems we ship replace the SaaS sprawl most growing
+                businesses accumulate by year three — HubSpot, QuickBooks,
+                Google Calendar, half a dozen spreadsheets, a Zapier patchwork.
+                One system, fitted to how your business runs, owned by you.
               </p>
             </motion.div>
             <motion.div
@@ -66,10 +66,10 @@ export default function About() {
                 Our Vision
               </h3>
               <p className="text-gray-600 dark:text-slate-300 leading-relaxed transition-colors">
-                To be the go-to tech partner for small businesses and
-                entrepreneurs—helping thousands of businesses establish their
-                online presence, streamline operations, and grow with
-                confidence.
+                To be the engineering team your business plugs in when SaaS no
+                longer fits — partners who ship custom systems fast, run them
+                with you, and share in the upside when it makes sense for both
+                of us.
               </p>
             </motion.div>
           </div>
@@ -98,21 +98,21 @@ export default function About() {
             {[
               {
                 icon: Code2,
-                title: "Big Tech Experience",
+                title: "Real Engineering Experience",
                 description:
-                  "Our team and advisors have built products at Google, Airbnb, Palantir, Microsoft and other top companies. Now we bring that expertise to your business.",
+                  "We've shipped at Airbnb, HubSpot, and AI startups at every stage — from seed to scale. That experience now goes into the systems we build for you, not a generic SaaS product.",
               },
               {
                 icon: Users,
-                title: "Small Business Heart",
+                title: "Built For How You Operate",
                 description:
-                  "We understand the challenges of running a small business. We're here to help, not to upsell you on things you don't need.",
+                  "Off-the-shelf tools force your business to bend to the product. We bend the product to your business. Every system we ship fits the way your team actually works.",
               },
               {
                 icon: TrendingUp,
-                title: "Affordable & Transparent",
+                title: "Skin In The Game",
                 description:
-                  "Clear pricing, no hidden fees, and solutions that fit your budget. We grow when you grow—it's that simple.",
+                  "For the right partners, we take a smaller base fee plus a revenue or profit share. We win when you win — it stops being a vendor relationship and starts being a real one.",
               },
             ].map((value, index) => (
               <motion.div
@@ -147,17 +147,18 @@ export default function About() {
             className="bg-gradient-to-br from-slate-900 to-slate-800 dark:from-slate-800 dark:to-slate-700 rounded-3xl shadow-xl p-12 md:p-16 text-white transition-colors"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Want to Work Together?
+              Want to work together?
             </h2>
             <p className="text-xl text-slate-200 dark:text-slate-300 mb-10 leading-relaxed max-w-2xl mx-auto transition-colors">
-              We&apos;d love to hear about what you&apos;re building. Drop us a line and we&apos;ll set up a time to chat about your project.
+              Tell us what you&apos;re building and where the friction is.
+              We&apos;ll set up a 30-minute call to scope it together.
             </p>
-            <a
+            <Link
               href="/contact"
               className="inline-block px-10 py-5 bg-blue-600 dark:bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-500 dark:hover:bg-blue-400 transition-all shadow-lg hover:shadow-xl text-lg"
             >
-              Get In Touch
-            </a>
+              Book a strategy call
+            </Link>
           </motion.div>
         </div>
       </section>
