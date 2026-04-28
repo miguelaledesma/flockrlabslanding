@@ -3,100 +3,30 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useRef, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback } from "react";
 import {
-  ArrowRight,
-  Sparkles,
-  Zap,
-  Users2,
-  Building2,
-  Globe,
-  ShoppingBag,
-  Wrench,
-  UtensilsCrossed,
-  Camera,
-  Search,
-  MessageSquare,
-  Cpu,
   Bot,
-  Database,
   Boxes,
-  CheckCircle2,
-  Rocket,
   ChevronDown,
+  Compass,
+  Database,
+  Rocket,
+  TrendingUp,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-  const carouselRef = useRef<HTMLDivElement>(null);
 
   const toggleFaq = useCallback((index: number) => {
     setOpenFaq(prev => prev === index ? null : index);
   }, []);
 
-  const handleMouseDown = useCallback((e: React.MouseEvent) => {
-    if (!carouselRef.current) return;
-    setIsDragging(true);
-    setStartX(e.pageX - carouselRef.current.offsetLeft);
-    setScrollLeft(carouselRef.current.scrollLeft);
-  }, []);
-
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    if (!isDragging || !carouselRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - carouselRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    carouselRef.current.scrollLeft = scrollLeft - walk;
-  }, [isDragging, startX, scrollLeft]);
-
-  const handleMouseUp = useCallback(() => {
-    setIsDragging(false);
-  }, []);
-
-  const handleTouchStart = useCallback((e: React.TouchEvent) => {
-    if (!carouselRef.current) return;
-    setIsDragging(true);
-    setStartX(e.touches[0].pageX - carouselRef.current.offsetLeft);
-    setScrollLeft(carouselRef.current.scrollLeft);
-  }, []);
-
-  const handleTouchMove = useCallback((e: React.TouchEvent) => {
-    if (!isDragging || !carouselRef.current) return;
-    const x = e.touches[0].pageX - carouselRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    carouselRef.current.scrollLeft = scrollLeft - walk;
-  }, [isDragging, startX, scrollLeft]);
-
-
-  const reviews = useMemo(() => [
-    {
-      name: "A1 Designing",
-      role: "Custom CRM & Operations",
-      content: "We needed a way to track our leads and keep operations organized. Flockr built us a custom CRM that does exactly that. Now we can see everything in one place instead of juggling spreadsheets and emails.",
-      image: "/a1designing.png"
-    },
-    {
-      name: "EZ Floorz and More",
-      role: "Lead Management & Crew Scheduling",
-      content: "Managing leads, scheduling crews, and keeping track of jobs was chaos. Flockr built us a system that handles all of it. Our team actually knows what's happening now, and we're not double-booking crews anymore.",
-      image: "/ezfloors.png"
-    },
-    {
-      name: "HeyRuby",
-      role: "Email & Document Management",
-      content: "Our email and document situation was a mess. Flockr helped us set up a system that actually makes sense. Everything's organized now, and we can find what we need when we need it.",
-      image: "/heyruby.png"
-    },
-    {
-      name: "SITH Athletics",
-      role: "E-commerce Launch & Automation",
-      content: "We had products but no idea how to get them online. Flockr got our store up and running, set up our products, and automated everything so orders just flow through. It's been a game changer.",
-      image: "/sith.png"
-    },
+  const clients = useMemo(() => [
+    { name: "A1 Designing", image: "/a1designing.png" },
+    { name: "EZ Floorz and More", image: "/ezfloors.png" },
+    { name: "HeyRuby", image: "/heyruby.png" },
+    { name: "SITH Athletics", image: "/sith.png" },
   ], []);
 
   return (
@@ -105,7 +35,7 @@ export default function Home() {
       <section className="relative pt-48 pb-32 px-4 overflow-hidden">
         {/* Designer Background: Ultra-subtle grid + light mask */}
         <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-40 dark:opacity-20" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-40 dark:opacity-20" />
         </div>
 
         <div className="max-w-5xl mx-auto w-full">
@@ -114,215 +44,263 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-6xl md:text-8xl font-bold tracking-tight text-slate-900 dark:text-slate-100 mb-8 leading-[0.95] transition-colors"
+              className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-slate-100 mb-8 leading-[1.05] transition-colors"
             >
-              Technology for <br />
-              <span className="relative inline-block mt-2">
+              Custom software for <br className="hidden md:block" />
+              businesses{" "}
+              <span className="relative inline-block">
                 <span className="relative z-10 font-serif italic bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent px-2">
-                  YOUR
+                  outgrowing SaaS
                 </span>
                 <motion.span
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ duration: 0.8, delay: 0.8, ease: "circOut" }}
-                  className="absolute bottom-2 left-0 w-full h-[0.15em] bg-blue-100/80 dark:bg-blue-900/40 -z-0 origin-left rounded-full"
+                  className="absolute bottom-1 left-0 w-full h-[0.12em] bg-blue-100/80 dark:bg-blue-900/40 -z-0 origin-left rounded-full"
                 />
-              </span>{" "}
-              business.
+              </span>
             </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg md:text-xl text-slate-500 dark:text-slate-400 mb-12 max-w-2xl leading-relaxed font-medium transition-colors"
-            >
-              We build high-performance CRMs, custom operations software, and modern web experiences for businesses that value quality.
-            </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-4"
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mb-12 max-w-2xl space-y-3"
+            >
+              <p className="text-xl md:text-2xl font-semibold text-slate-800 dark:text-slate-100 leading-snug md:leading-relaxed transition-colors">
+                We design, build, and maintain CRMs, ops platforms, and AI workflows fitted to how your business actually runs — for when HubSpot, QuickBooks, and the rest stop fitting.
+              </p>
+              <p className="text-base md:text-lg font-normal text-slate-500 dark:text-slate-400 leading-relaxed transition-colors">
+                White-glove custom software, built to the standard you&apos;ve come to expect from the big names.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-col items-center gap-5"
             >
               <Link href="/contact">
-                <Button size="lg" className="h-12 px-8 text-sm font-semibold bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 dark:hover:bg-slate-200 text-white dark:text-slate-900 rounded-full transition-all shadow-sm">
-                  Get Started
+                <Button size="lg" className="h-12 px-8 text-sm font-semibold bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white rounded-full transition-all shadow-[0_20px_40px_-15px_rgba(37,99,235,0.4)] dark:shadow-[0_20px_40px_-15px_rgba(59,130,246,0.3)]">
+                  Contact us
                 </Button>
               </Link>
-              <Link href="/about">
-                <Button size="lg" variant="outline" className="h-12 px-8 text-sm font-semibold border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-full transition-all">
-                  Our Process
-                </Button>
-              </Link>
+              <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 transition-colors">
+                10+ years shipping software at Airbnb, HubSpot, and AI startups from seed to scale
+              </p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Testimonial Section - Clean Marquee */}
-      <section className="py-20 border-y border-slate-50 dark:border-slate-800 bg-slate-50/20 dark:bg-slate-900/20 overflow-hidden transition-colors">
-        <div className="flex flex-col gap-12">
-          <div
-            ref={carouselRef}
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUp}
-            onMouseLeave={handleMouseUp}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleMouseUp}
-            className={`flex space-x-8 whitespace-nowrap overflow-x-auto scrollbar-hide ${
-              isDragging ? "cursor-grabbing" : "cursor-grab"
-            } ${!isDragging ? "animate-marquee" : ""}`}
-            style={{
-              scrollbarWidth: "none",
-              msOverflowStyle: "none",
-              WebkitOverflowScrolling: "touch",
-            }}
+      {/* Logo Wall */}
+      <section className="py-20 border-y border-slate-50 dark:border-slate-800 bg-slate-50/20 dark:bg-slate-900/20 transition-colors">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center text-[11px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-10 transition-colors"
           >
-            {[...reviews, ...reviews].map((review, i) => (
+            Trusted by operators across SaaS, landscaping and home-remodeling services, retail, and athletics
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10 md:gap-x-12 items-center justify-items-center"
+          >
+            {clients.map((client) => (
               <div
-                key={i}
-                className="inline-block w-[85vw] sm:w-[400px] flex-shrink-0 bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-2xl sm:rounded-3xl border border-slate-100 dark:border-slate-800 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.02)] dark:shadow-[0_2px_15px_-3px_rgba(0,0,0,0.3)] transition-colors"
+                key={client.name}
+                className="relative h-12 md:h-14 w-full max-w-[180px]"
               >
-                <p className="text-slate-600 dark:text-slate-300 text-base whitespace-normal mb-6 font-medium leading-relaxed italic transition-colors">
-                  &quot;{review.content}&quot;
-                </p>
-                <div className="flex items-center gap-3">
-                  {review.image ? (
-                    <div className="h-10 w-10 rounded-full overflow-hidden border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 relative transition-colors">
-                      <Image
-                        src={review.image}
-                        alt={review.name}
-                        fill
-                        className="object-cover"
-                        loading="lazy"
-                        sizes="(max-width: 640px) 40px, 40px"
-                      />
-                    </div>
-                  ) : (
-                    <div className="h-1 w-8 bg-blue-600 dark:bg-blue-400 rounded-full transition-colors" />
-                  )}
-                  <div>
-                    <p className="font-bold text-slate-900 dark:text-slate-100 text-sm transition-colors">{review.name}</p>
-                    <p className="text-slate-400 dark:text-slate-500 text-[11px] font-bold uppercase tracking-wider transition-colors">{review.role}</p>
-                  </div>
-                </div>
+                <Image
+                  src={client.image}
+                  alt={client.name}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 150px, 180px"
+                />
               </div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* What we replace - SaaS Strikethrough Wall */}
+      <section className="py-16 md:py-32 bg-white dark:bg-slate-950 transition-colors">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="max-w-2xl mb-10 md:mb-16">
+            <p className="text-[11px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-4 transition-colors">The Problem</p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-4 sm:mb-6 tracking-tight leading-tight transition-colors">
+              The tools that stop fitting <br className="hidden md:block" />as you grow.
+            </h2>
+            <p className="text-base md:text-lg text-slate-600 dark:text-slate-400 font-medium leading-relaxed transition-colors">
+              Most growing businesses stack 6&ndash;10 SaaS tools to run their operation. Each one fits 70% of how you actually work &mdash; and the other 30% becomes workarounds, spreadsheets, and Zapier glue.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4">
+            {[
+              "HubSpot", "Salesforce", "Pipedrive", "QuickBooks",
+              "FreshBooks", "Asana", "Monday", "Trello",
+              "Google Calendar", "Calendly", "Zapier", "Mailchimp"
+            ].map((tool, i) => (
+              <motion.div
+                key={tool}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.04, duration: 0.3 }}
+                className="bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl px-4 py-5 md:px-5 md:py-6 transition-colors"
+              >
+                <span className="block text-sm md:text-base font-semibold text-slate-400 dark:text-slate-500 transition-colors">
+                  {tool}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+
+          <p className="text-center mt-12 md:mt-16 text-base md:text-lg text-slate-700 dark:text-slate-300 font-medium max-w-2xl mx-auto leading-relaxed transition-colors">
+            We replace your stack with <span className="font-bold text-slate-900 dark:text-slate-100">one custom system</span>, fitted to how your business actually runs.
+          </p>
+        </div>
+      </section>
+
+      {/* What we ship - 4 Capability Cards */}
+      <section className="py-16 md:py-32 bg-slate-50/40 dark:bg-slate-900/40 transition-colors">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="max-w-2xl mb-10 md:mb-16">
+            <p className="text-[11px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-4 transition-colors">What we ship</p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-4 sm:mb-6 tracking-tight leading-tight transition-colors">
+              Custom-built. <br className="hidden md:block" />Yours to keep.
+            </h2>
+            <p className="text-base md:text-lg text-slate-600 dark:text-slate-400 font-medium leading-relaxed transition-colors">
+              Greenfield or legacy. CRM or ops platform. AI automation or system audit. We&apos;re 0&nbsp;→&nbsp;1 builders and 1&nbsp;→&nbsp;10 scalers, building what your business actually needs &mdash; fitted, custom, and owned by you.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            {[
+              {
+                icon: Database,
+                title: "Custom CRMs",
+                tags: ["Lead intake", "Pipeline", "Customer ops"],
+                desc: "Build the lead intake, sales pipeline, and customer-ops dashboard your team actually wants — when HubSpot, Pipedrive, or Salesforce don't fit, or when you don't have one yet.",
+              },
+              {
+                icon: Boxes,
+                title: "Operations Platforms",
+                tags: ["Job intake", "Scheduling", "Invoicing"],
+                desc: "Job intake → resource assignment → invoicing → reporting, in one screen, fitted to your industry. Whether you're moving off spreadsheets or scaling past your current SaaS.",
+              },
+              {
+                icon: Bot,
+                title: "AI Automations",
+                tags: ["Inbox triage", "Doc parsing", "Agents"],
+                desc: "Inbox triage, document processing, custom agents that know your business. Pragmatic AI applied where it pays back — not where it's trendy.",
+              },
+              {
+                icon: Rocket,
+                title: "0 → 1 Builds",
+                tags: ["MVPs", "First product", "Getting online"],
+                desc: "Got an idea, no software yet? We design and ship the first version of your product, internal tool, or customer-facing platform — engineering-led, not template-led.",
+              },
+              {
+                icon: TrendingUp,
+                title: "1 → 10 Scaling",
+                tags: ["Modernization", "Refactors", "Pragmatic upgrades"],
+                desc: "Got something working but it's groaning under growth? We modernize, refactor, and scale the systems you can't afford to throw away — pragmatic and incremental, never rip-and-replace.",
+              },
+              {
+                icon: Compass,
+                title: "System Audits & Strategy",
+                tags: ["Stack review", "Direction", "Tech advisory"],
+                desc: "Not sure where to start? We review your current stack, find the bottlenecks, and tell you what to keep, replace, or rebuild — even if some of the answers point away from us.",
+              },
+            ].map((cap, i) => (
+              <motion.div
+                key={cap.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.06, duration: 0.4 }}
+                className="bg-white dark:bg-slate-950 rounded-3xl p-6 md:p-8 border border-slate-100 dark:border-slate-800 hover:border-blue-100 dark:hover:border-blue-900 transition-colors"
+              >
+                <div className="h-12 w-12 rounded-xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center mb-5 transition-colors">
+                  <cap.icon className="h-6 w-6 text-blue-600 dark:text-blue-400 transition-colors" />
+                </div>
+                <h3 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-slate-100 mb-3 transition-colors">{cap.title}</h3>
+                <div className="flex flex-wrap items-center gap-1.5 mb-4">
+                  {cap.tags.map((t) => (
+                    <span key={t} className="text-[11px] font-semibold text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 rounded-full px-2.5 py-1 transition-colors">{t}</span>
+                  ))}
+                </div>
+                <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 leading-relaxed font-medium transition-colors">
+                  {cap.desc}
+                </p>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Bento Grid - Refined & Minimal */}
-      <section className="py-12 md:py-32">
+      {/* How we work - 4 Step Process */}
+      <section className="py-16 md:py-32 bg-white dark:bg-slate-950 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-4 md:gap-4">
-            {/* Featured Box */}
-            <motion.div
-              whileHover={{ y: -2 }}
-              className="md:col-span-2 lg:row-span-2 bg-slate-900 dark:bg-slate-800 rounded-2xl md:rounded-[2.5rem] p-4 sm:p-6 md:p-12 text-white flex flex-col justify-between relative overflow-hidden transition-colors"
-            >
-              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/20 dark:bg-blue-500/20 blur-[100px]" />
-              <div className="relative z-10">
-                <div className="flex items-start gap-3 md:block">
-                  <Rocket className="h-6 w-6 sm:h-8 sm:w-8 mb-0 md:mb-8 text-blue-400 dark:text-blue-300 transition-colors flex-shrink-0" />
-                  <div className="flex-1">
-                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3 md:mb-4 tracking-tight">Custom <br className="hidden md:block" />Solutions</h3>
-                    <p className="text-slate-400 dark:text-slate-300 text-sm sm:text-base md:text-lg leading-relaxed max-w-xs transition-colors">We don&apos;t do generic. We build tools specifically for your workflow.</p>
-                  </div>
-                </div>
-              </div>
-              <div className="relative z-10 flex flex-wrap gap-2 mt-3 md:mt-4">
-                {["CRMs", "Operations", "AI", "Mobile"].map(tag => (
-                  <span key={tag} className="px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-white/10 dark:bg-white/20 text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-colors">{tag}</span>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* AI Box */}
-            <motion.div
-              whileHover={{ y: -2 }}
-              className="md:col-span-2 bg-white dark:bg-slate-900 rounded-2xl md:rounded-[2.5rem] border border-slate-100 dark:border-slate-800 p-4 sm:p-6 md:p-10 flex flex-col justify-between group hover:border-blue-100 dark:hover:border-blue-800 transition-colors"
-            >
-              <div className="flex justify-between items-start mb-3 md:mb-4">
-                <div className="h-8 w-8 sm:h-10 sm:w-10 rounded-xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center transition-colors">
-                  <Bot className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 dark:text-blue-400 transition-colors" />
-                </div>
-                <div className="px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-emerald-50 dark:bg-emerald-900/30 text-[9px] sm:text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest transition-colors">Active</div>
-              </div>
-              <div>
-                <h3 className="text-base sm:text-lg md:text-xl font-bold text-slate-900 dark:text-slate-100 mb-1.5 md:mb-2 transition-colors">AI Workflows</h3>
-                <p className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400 transition-colors leading-relaxed">Modernize your business with automated AI agents and smart document processing.</p>
-              </div>
-            </motion.div>
-
-            {/* Industries Box */}
-            <motion.div
-              whileHover={{ y: -2 }}
-              className="md:col-span-1 bg-slate-50/50 dark:bg-slate-900/50 rounded-2xl md:rounded-[2.5rem] border border-slate-100 dark:border-slate-800 p-4 sm:p-6 md:p-10 flex flex-col justify-between transition-colors"
-            >
-              <div className="flex items-start gap-3 md:block">
-                <Building2 className="h-5 w-5 sm:h-6 sm:w-6 text-slate-400 dark:text-slate-500 transition-colors mb-0 md:mb-2 flex-shrink-0" />
-                <div className="flex-1">
-                  <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 leading-tight transition-colors">Industries <br className="hidden md:block" />We Support</h3>
-                  <p className="text-slate-400 dark:text-slate-500 text-[10px] sm:text-xs font-bold uppercase tracking-tighter transition-colors mt-1 md:mt-2">Landscaping to SaaS</p>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Trust Box */}
-            <motion.div
-              whileHover={{ y: -2 }}
-              className="md:col-span-1 bg-white dark:bg-slate-900 rounded-2xl md:rounded-[2.5rem] border border-slate-100 dark:border-slate-800 p-4 sm:p-6 md:p-10 flex flex-col justify-between hover:border-blue-100 dark:hover:border-blue-800 transition-colors"
-            >
-              <div className="flex items-start gap-3 md:block">
-                <CheckCircle2 className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600 dark:text-blue-400 transition-colors mb-0 md:mb-2 flex-shrink-0" />
-                <div className="flex-1">
-                  <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 transition-colors">Zero Jargon.</h3>
-                  <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium transition-colors mt-1 md:mt-2">Clear communication, no hidden fees.</p>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* The Toolkit - Ultra Clean Grid */}
-      <section className="py-16 md:py-32 bg-slate-50/30 dark:bg-slate-900/30 transition-colors">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="max-w-2xl mb-12 md:mb-24">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4 sm:mb-6 tracking-tight transition-colors">The Toolkit</h2>
-            <p className="text-base md:text-lg text-slate-500 dark:text-slate-400 font-medium transition-colors">Specialized software designed for the growth of local businesses.</p>
+          <div className="max-w-2xl mb-10 md:mb-16">
+            <p className="text-[11px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-4 transition-colors">How we work</p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-4 sm:mb-6 tracking-tight leading-tight transition-colors">
+              From friction <br className="hidden md:block" />to shipped.
+            </h2>
+            <p className="text-base md:text-lg text-slate-600 dark:text-slate-400 font-medium leading-relaxed transition-colors">
+              Most engagements run 6&ndash;14 weeks from kickoff to launch. You have working software the whole time, not at the end.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8 md:gap-x-12 md:gap-y-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {[
-              { icon: Globe, title: "Modern Websites", desc: "Fast, mobile-ready sites built for conversion." },
-              { icon: Database, title: "Custom CRMs", desc: "Tailored lead and operation management systems." },
-              { icon: ShoppingBag, title: "E-commerce", desc: "Full-service Shopify setup and custom themes." },
-              { icon: Search, title: "Local SEO", desc: "Ranking your business where it matters most." },
-              { icon: MessageSquare, title: "Social Tools", desc: "Custom bio links and engagement tools." },
-              { icon: Cpu, title: "Tech Strategy", desc: "Expert advice on scaling your business tech." },
-              { icon: Wrench, title: "System Updates", desc: "Modernizing legacy tools for better performance." },
-              { icon: Boxes, title: "Custom Software", desc: "Bespoke tools built for unique business cases." }
-            ].map((service, i) => (
+              {
+                step: "01",
+                title: "Discovery",
+                duration: "1–2 weeks",
+                desc: "We sit with your team, watch the actual work, and find the real friction. Not a brief — a diagnosis.",
+              },
+              {
+                step: "02",
+                title: "Scope",
+                duration: "1 week",
+                desc: "We propose what to build, what to replace, and how it pays back. Fixed scope, fixed timeline, signed quote.",
+              },
+              {
+                step: "03",
+                title: "Build",
+                duration: "4–12 weeks",
+                desc: "Weekly increments. You see it growing each week, give feedback, and have working software the whole time.",
+              },
+              {
+                step: "04",
+                title: "Run",
+                duration: "Ongoing",
+                desc: "We maintain it, evolve it, and operate it with you. New features ship as your business needs them.",
+              },
+            ].map((step, i) => (
               <motion.div
-                key={i}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                className="flex flex-row md:flex-col items-start gap-3 md:gap-0 group"
+                key={step.step}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.1, duration: 0.4 }}
+                className="relative"
               >
-                <div className="h-8 w-8 sm:h-10 sm:w-10 mb-0 md:mb-4 flex items-center justify-center rounded-lg bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm group-hover:border-blue-200 dark:group-hover:border-blue-700 transition-colors flex-shrink-0">
-                  <service.icon className="h-4 w-4 sm:h-5 sm:w-5 text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 mb-2 sm:mb-3 transition-colors">{service.title}</h3>
-                  <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-medium transition-colors">{service.desc}</p>
-                </div>
+                <div className="text-5xl md:text-6xl font-bold text-slate-200 dark:text-slate-800 leading-none mb-4 transition-colors">{step.step}</div>
+                <h3 className="text-lg md:text-xl font-bold text-slate-900 dark:text-slate-100 mb-1 transition-colors">{step.title}</h3>
+                <p className="text-[10px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-3 transition-colors">{step.duration}</p>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-medium transition-colors">{step.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -341,7 +319,7 @@ export default function Home() {
             {[
               {
                 q: "How much does a typical project cost?",
-                a: "Our projects are billed at a standard rate of $300/hr. Small business projects typically range between $2,000 and $10,000, while mid-size business solutions usually range from $10,000 to $75,000. For enterprise-level projects, please contact us for a custom consultation and quote."
+                a: "Engagements typically start at $25K for scoped builds and scale into the six figures for multi-quarter platforms. We also offer aligned-incentive partnerships where we take a smaller base plus a revenue or profit share — best for operators who want a real partner, not just a vendor. Book a free 30-min call and we'll scope your specific situation."
               },
               {
                 q: "How do we get started?",
@@ -390,7 +368,7 @@ export default function Home() {
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <div className="px-8 pb-8 pt-0">
+                      <div className="px-8 pb-8 pt-4">
                         <p className="text-slate-600 dark:text-slate-300 leading-relaxed font-medium transition-colors">{faq.a}</p>
                       </div>
                     </motion.div>
@@ -412,13 +390,13 @@ export default function Home() {
             className="text-center"
           >
             <h2 className="text-5xl md:text-7xl font-bold text-slate-900 dark:text-slate-100 mb-10 tracking-tighter transition-colors">Ready to build?</h2>
-            <p className="text-xl text-slate-500 dark:text-slate-400 mb-12 max-w-2xl mx-auto font-medium transition-colors">
-              Join the local businesses modernizing their operations with Flockr Labs.
+            <p className="text-xl text-slate-600 dark:text-slate-400 mb-12 max-w-2xl mx-auto font-medium transition-colors">
+              Tell us where the friction is. We&apos;ll set up a 30-minute call and scope it together.
             </p>
             <div className="flex flex-col items-center gap-6">
               <Link href="/contact">
                 <Button size="lg" className="h-16 px-12 text-lg font-bold bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white rounded-full transition-all shadow-[0_20px_40px_-15px_rgba(37,99,235,0.4)] dark:shadow-[0_20px_40px_-15px_rgba(59,130,246,0.3)]">
-                  Let&apos;s talk
+                  Contact us
                 </Button>
               </Link>
               <a href="mailto:flockr@flockrlabs.com" className="text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-200 transition-colors font-bold uppercase tracking-widest text-[10px]">

@@ -9,14 +9,65 @@ const getResend = () => {
   return new Resend(process.env.RESEND_API_KEY);
 };
 
+// HTML escape to prevent injection in the email body we send to ourselves
+const escapeHtml = (str: string): string =>
+  String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const MAX_NAME = 200;
+const MAX_SUBJECT = 300;
+const MAX_MESSAGE = 5000;
+
 export async function POST(request: NextRequest) {
   try {
-    const { name, email, subject, message } = await request.json();
+    const body = await request.json();
+    const name = typeof body.name === "string" ? body.name.trim() : "";
+    const email = typeof body.email === "string" ? body.email.trim() : "";
+    const subject = typeof body.subject === "string" ? body.subject.trim() : "";
+    const message = typeof body.message === "string" ? body.message.trim() : "";
+    const honeypot = typeof body.website === "string" ? body.website.trim() : "";
+
+    // Honeypot — bots fill the hidden "website" field, humans don't.
+    // Return a fake success so bots don't learn the field exists.
+    if (honeypot.length > 0) {
+      return NextResponse.json(
+        { message: "Email sent successfully" },
+        { status: 200 }
+      );
+    }
 
     // Validate required fields
     if (!name || !email || !subject || !message) {
       return NextResponse.json(
         { error: "All fields are required" },
+        { status: 400 }
+      );
+    }
+
+    // Validate email format
+    if (!EMAIL_REGEX.test(email) || email.length > 320) {
+      return NextResponse.json(
+        { error: "Please enter a valid email address" },
+        { status: 400 }
+      );
+    }
+
+    // Validate field lengths
+    if (
+      name.length > MAX_NAME ||
+      subject.length > MAX_SUBJECT ||
+      message.length > MAX_MESSAGE
+    ) {
+      return NextResponse.json(
+        {
+          error: "One or more fields exceed the maximum allowed length",
+          message: `Please keep messages under ${MAX_MESSAGE.toLocaleString()} characters.`,
+        },
         { status: 400 }
       );
     }
@@ -59,6 +110,12 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Escape all user-supplied values before HTML interpolation
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safeSubject = escapeHtml(subject);
+    const safeMessage = escapeHtml(message).replace(/\n/g, "<br>");
+
     const { data, error } = await resend.emails.send({
       from: fromAddress,
       to: toAddress,
@@ -71,13 +128,13 @@ export async function POST(request: NextRequest) {
             New Contact Form Submission
           </h2>
           <div style="margin: 20px 0;">
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-            <p><strong>Subject:</strong> ${subject}</p>
+            <p><strong>Name:</strong> ${safeName}</p>
+            <p><strong>Email:</strong> <a href="mailto:${safeEmail}">${safeEmail}</a></p>
+            <p><strong>Subject:</strong> ${safeSubject}</p>
           </div>
           <div style="margin: 20px 0; padding: 15px; background-color: #f5f5f5; border-radius: 5px;">
             <h3 style="margin-top: 0;">Message:</h3>
-            <p style="white-space: pre-wrap;">${message.replace(/\n/g, '<br>')}</p>
+            <p style="white-space: pre-wrap;">${safeMessage}</p>
           </div>
         </div>
       `,
