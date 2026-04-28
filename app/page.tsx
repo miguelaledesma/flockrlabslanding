@@ -5,25 +5,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useMemo, useCallback } from "react";
 import {
-  ArrowRight,
-  Sparkles,
-  Zap,
-  Users2,
-  Building2,
-  Globe,
-  ShoppingBag,
-  Wrench,
-  UtensilsCrossed,
-  Camera,
-  Search,
-  MessageSquare,
-  Cpu,
   Bot,
-  Database,
   Boxes,
-  CheckCircle2,
-  Rocket,
   ChevronDown,
+  Database,
+  Wrench,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -77,22 +63,34 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-12 max-w-2xl leading-relaxed font-medium transition-colors"
+              className="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-5 max-w-2xl leading-relaxed font-medium transition-colors"
             >
-              We design, build, and maintain CRMs, ops platforms, and AI workflows tailored to how your business actually runs — when HubSpot, QuickBooks, and the rest stop fitting. Engineering experience building at companies like Airbnb, HubSpot, and AI startups at every stage.
+              We design, build, and maintain CRMs, ops platforms, and AI workflows fitted to how your business actually runs — for when HubSpot, QuickBooks, and the rest stop fitting.
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-lg md:text-xl text-slate-800 dark:text-slate-200 mb-12 max-w-2xl leading-relaxed font-semibold transition-colors"
+            >
+              White-glove custom software, built to the standard you&apos;ve come to expect from the big names.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-4"
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-col items-center gap-5"
             >
               <Link href="/contact">
                 <Button size="lg" className="h-12 px-8 text-sm font-semibold bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 dark:hover:bg-slate-200 text-white dark:text-slate-900 rounded-full transition-all shadow-sm">
                   Book a 30-min strategy call
                 </Button>
               </Link>
+              <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 transition-colors">
+                Engineering from Airbnb, HubSpot, and AI startups at every stage
+              </p>
             </motion.div>
           </div>
         </div>
@@ -120,7 +118,7 @@ export default function Home() {
             {clients.map((client) => (
               <div
                 key={client.name}
-                className="relative h-12 md:h-14 w-full max-w-[180px] opacity-70 hover:opacity-100 transition-opacity"
+                className="relative h-12 md:h-14 w-full max-w-[180px]"
               >
                 <Image
                   src={client.image}
@@ -135,114 +133,168 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Bento Grid - Refined & Minimal */}
-      <section className="py-12 md:py-32">
+      {/* What we replace - SaaS Strikethrough Wall */}
+      <section className="py-16 md:py-32 bg-white dark:bg-slate-950 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <h2 className="sr-only">What sets Flockr apart</h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-4 md:gap-4">
-            {/* Featured Box */}
-            <motion.div
-              whileHover={{ y: -2 }}
-              className="md:col-span-2 lg:row-span-2 bg-slate-900 dark:bg-slate-800 rounded-2xl md:rounded-[2.5rem] p-4 sm:p-6 md:p-12 text-white flex flex-col justify-between relative overflow-hidden transition-colors"
-            >
-              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/20 dark:bg-blue-500/20 blur-[100px]" />
-              <div className="relative z-10">
-                <div className="flex items-start gap-3 md:block">
-                  <Rocket className="h-6 w-6 sm:h-8 sm:w-8 mb-0 md:mb-8 text-blue-400 dark:text-blue-300 transition-colors flex-shrink-0" />
-                  <div className="flex-1">
-                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3 md:mb-4 tracking-tight">Custom <br className="hidden md:block" />Solutions</h3>
-                    <p className="text-slate-400 dark:text-slate-300 text-sm sm:text-base md:text-lg leading-relaxed max-w-xs transition-colors">We don&apos;t do generic. We build tools specifically for your workflow.</p>
-                  </div>
-                </div>
-              </div>
-              <div className="relative z-10 flex flex-wrap gap-2 mt-3 md:mt-4">
-                {["CRMs", "Operations", "AI", "Mobile"].map(tag => (
-                  <span key={tag} className="px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-white/10 dark:bg-white/20 text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-colors">{tag}</span>
-                ))}
-              </div>
-            </motion.div>
+          <div className="max-w-2xl mb-10 md:mb-16">
+            <p className="text-[11px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-4 transition-colors">The Problem</p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-4 sm:mb-6 tracking-tight leading-tight transition-colors">
+              The tools that stop fitting <br className="hidden md:block" />as you grow.
+            </h2>
+            <p className="text-base md:text-lg text-slate-600 dark:text-slate-400 font-medium leading-relaxed transition-colors">
+              Most growing businesses stack 6&ndash;10 SaaS tools to run their operation. Each one fits 70% of how you actually work &mdash; and the other 30% becomes workarounds, spreadsheets, and Zapier glue.
+            </p>
+          </div>
 
-            {/* AI Box */}
-            <motion.div
-              whileHover={{ y: -2 }}
-              className="md:col-span-2 bg-white dark:bg-slate-900 rounded-2xl md:rounded-[2.5rem] border border-slate-100 dark:border-slate-800 p-4 sm:p-6 md:p-10 flex flex-col justify-between group hover:border-blue-100 dark:hover:border-blue-800 transition-colors"
-            >
-              <div className="flex justify-between items-start mb-3 md:mb-4">
-                <div className="h-8 w-8 sm:h-10 sm:w-10 rounded-xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center transition-colors">
-                  <Bot className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 dark:text-blue-400 transition-colors" />
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4">
+            {[
+              "HubSpot", "Salesforce", "Pipedrive", "QuickBooks",
+              "FreshBooks", "Asana", "Monday", "Trello",
+              "Google Calendar", "Calendly", "Zapier", "Mailchimp"
+            ].map((tool, i) => (
+              <motion.div
+                key={tool}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.04, duration: 0.3 }}
+                className="relative bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl px-4 py-5 md:px-5 md:py-6 overflow-hidden transition-colors"
+              >
+                <span className="block text-sm md:text-base font-semibold text-slate-400 dark:text-slate-500 transition-colors">
+                  {tool}
+                </span>
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="w-[120%] h-[2px] bg-red-500/60 dark:bg-red-500/70 transform -rotate-12 origin-center" />
                 </div>
-                <div className="px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-emerald-50 dark:bg-emerald-900/30 text-[9px] sm:text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest transition-colors">Active</div>
-              </div>
-              <div>
-                <h3 className="text-base sm:text-lg md:text-xl font-bold text-slate-900 dark:text-slate-100 mb-1.5 md:mb-2 transition-colors">AI Workflows</h3>
-                <p className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400 transition-colors leading-relaxed">Modernize your business with automated AI agents and smart document processing.</p>
-              </div>
-            </motion.div>
+              </motion.div>
+            ))}
+          </div>
 
-            {/* Industries Box */}
-            <motion.div
-              whileHover={{ y: -2 }}
-              className="md:col-span-1 bg-slate-50/50 dark:bg-slate-900/50 rounded-2xl md:rounded-[2.5rem] border border-slate-100 dark:border-slate-800 p-4 sm:p-6 md:p-10 flex flex-col justify-between transition-colors"
-            >
-              <div className="flex items-start gap-3 md:block">
-                <Building2 className="h-5 w-5 sm:h-6 sm:w-6 text-slate-400 dark:text-slate-500 transition-colors mb-0 md:mb-2 flex-shrink-0" />
-                <div className="flex-1">
-                  <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 leading-tight transition-colors">Industries <br className="hidden md:block" />We Support</h3>
-                  <p className="text-slate-400 dark:text-slate-500 text-[10px] sm:text-xs font-bold uppercase tracking-tighter transition-colors mt-1 md:mt-2">Landscaping to SaaS</p>
-                </div>
-              </div>
-            </motion.div>
+          <p className="text-center mt-12 md:mt-16 text-base md:text-lg text-slate-700 dark:text-slate-300 font-medium max-w-2xl mx-auto leading-relaxed transition-colors">
+            We replace your stack with <span className="font-bold text-slate-900 dark:text-slate-100">one custom system</span>, fitted to how your business actually runs.
+          </p>
+        </div>
+      </section>
 
-            {/* Trust Box */}
-            <motion.div
-              whileHover={{ y: -2 }}
-              className="md:col-span-1 bg-white dark:bg-slate-900 rounded-2xl md:rounded-[2.5rem] border border-slate-100 dark:border-slate-800 p-4 sm:p-6 md:p-10 flex flex-col justify-between hover:border-blue-100 dark:hover:border-blue-800 transition-colors"
-            >
-              <div className="flex items-start gap-3 md:block">
-                <CheckCircle2 className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600 dark:text-blue-400 transition-colors mb-0 md:mb-2 flex-shrink-0" />
-                <div className="flex-1">
-                  <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 transition-colors">Zero Jargon.</h3>
-                  <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium transition-colors mt-1 md:mt-2">Clear communication, no hidden fees.</p>
+      {/* What we ship - 4 Capability Cards */}
+      <section className="py-16 md:py-32 bg-slate-50/40 dark:bg-slate-900/40 transition-colors">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="max-w-2xl mb-10 md:mb-16">
+            <p className="text-[11px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-4 transition-colors">What we ship</p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-4 sm:mb-6 tracking-tight leading-tight transition-colors">
+              One system, <br className="hidden md:block" />fitted to your business.
+            </h2>
+            <p className="text-base md:text-lg text-slate-600 dark:text-slate-400 font-medium leading-relaxed transition-colors">
+              Fewer tools, deeper fit, owned by you. Here&apos;s what the customers we replace SaaS for typically end up shipping with us.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            {[
+              {
+                icon: Database,
+                title: "Custom CRMs",
+                replaces: ["HubSpot", "Pipedrive", "Salesforce"],
+                example: "Lead intake from your channels — web forms, Instagram DMs, inbound calls — enriched and routed to the right person, tracked across pipeline stages fitted to your actual sales motion. Not a generic template.",
+              },
+              {
+                icon: Boxes,
+                title: "Operations Platforms",
+                replaces: ["QuickBooks", "Asana", "Spreadsheets"],
+                example: "Job intake → resource and crew assignment → invoicing → payment, in one screen, fitted to your industry's real workflow. Replaces the spreadsheet sprawl you've outgrown.",
+              },
+              {
+                icon: Bot,
+                title: "AI Workflows",
+                replaces: ["Zapier", "Manual review", "Inbox triage"],
+                example: "Inbound emails triaged by an LLM that knows your business. Documents read and summarized. Repetitive 20-minute decisions made in 10 seconds — with a human in the loop where it counts.",
+              },
+              {
+                icon: Wrench,
+                title: "Migrations & Integrations",
+                replaces: ["Vendor lock-in", "CSV exports", "Data trapped in SaaS"],
+                example: "Get your data out of the tools you've outgrown. Two-way sync with the ones you can't ditch yet. Phased migration so you're never stuck mid-switch with two sources of truth.",
+              },
+            ].map((cap, i) => (
+              <motion.div
+                key={cap.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.08, duration: 0.4 }}
+                className="bg-white dark:bg-slate-950 rounded-3xl p-6 md:p-8 border border-slate-100 dark:border-slate-800 hover:border-blue-100 dark:hover:border-blue-900 transition-colors"
+              >
+                <div className="h-12 w-12 rounded-xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center mb-5 transition-colors">
+                  <cap.icon className="h-6 w-6 text-blue-600 dark:text-blue-400 transition-colors" />
                 </div>
-              </div>
-            </motion.div>
+                <h3 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-slate-100 mb-3 transition-colors">{cap.title}</h3>
+                <div className="flex flex-wrap items-center gap-1.5 mb-4">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mr-1 transition-colors">Replaces</span>
+                  {cap.replaces.map((r) => (
+                    <span key={r} className="text-[11px] font-semibold text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 rounded-full px-2.5 py-1 transition-colors">{r}</span>
+                  ))}
+                </div>
+                <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 leading-relaxed font-medium transition-colors">
+                  {cap.example}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* The Toolkit - Ultra Clean Grid */}
-      <section className="py-16 md:py-32 bg-slate-50/30 dark:bg-slate-900/30 transition-colors">
+      {/* How we work - 4 Step Process */}
+      <section className="py-16 md:py-32 bg-white dark:bg-slate-950 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="max-w-2xl mb-12 md:mb-24">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4 sm:mb-6 tracking-tight transition-colors">The Toolkit</h2>
-            <p className="text-base md:text-lg text-slate-500 dark:text-slate-400 font-medium transition-colors">Specialized software designed for the growth of local businesses.</p>
+          <div className="max-w-2xl mb-10 md:mb-16">
+            <p className="text-[11px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-4 transition-colors">How we work</p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-4 sm:mb-6 tracking-tight leading-tight transition-colors">
+              From friction <br className="hidden md:block" />to shipped.
+            </h2>
+            <p className="text-base md:text-lg text-slate-600 dark:text-slate-400 font-medium leading-relaxed transition-colors">
+              Most engagements run 6&ndash;14 weeks from kickoff to launch. You have working software the whole time, not at the end.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8 md:gap-x-12 md:gap-y-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {[
-              { icon: Globe, title: "Modern Websites", desc: "Fast, mobile-ready sites built for conversion." },
-              { icon: Database, title: "Custom CRMs", desc: "Tailored lead and operation management systems." },
-              { icon: ShoppingBag, title: "E-commerce", desc: "Full-service Shopify setup and custom themes." },
-              { icon: Search, title: "Local SEO", desc: "Ranking your business where it matters most." },
-              { icon: MessageSquare, title: "Social Tools", desc: "Custom bio links and engagement tools." },
-              { icon: Cpu, title: "Tech Strategy", desc: "Expert advice on scaling your business tech." },
-              { icon: Wrench, title: "System Updates", desc: "Modernizing legacy tools for better performance." },
-              { icon: Boxes, title: "Custom Software", desc: "Bespoke tools built for unique business cases." }
-            ].map((service, i) => (
+              {
+                step: "01",
+                title: "Discovery",
+                duration: "1–2 weeks",
+                desc: "We sit with your team, watch the actual work, and find the real friction. Not a brief — a diagnosis.",
+              },
+              {
+                step: "02",
+                title: "Scope",
+                duration: "1 week",
+                desc: "We propose what to build, what to replace, and how it pays back. Fixed scope, fixed timeline, signed quote.",
+              },
+              {
+                step: "03",
+                title: "Build",
+                duration: "4–12 weeks",
+                desc: "Weekly increments. You see it growing each week, give feedback, and have working software the whole time.",
+              },
+              {
+                step: "04",
+                title: "Run",
+                duration: "Ongoing",
+                desc: "We maintain it, evolve it, and operate it with you. New features ship as your business needs them.",
+              },
+            ].map((step, i) => (
               <motion.div
-                key={i}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                className="flex flex-row md:flex-col items-start gap-3 md:gap-0 group"
+                key={step.step}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.1, duration: 0.4 }}
+                className="relative"
               >
-                <div className="h-8 w-8 sm:h-10 sm:w-10 mb-0 md:mb-4 flex items-center justify-center rounded-lg bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm group-hover:border-blue-200 dark:group-hover:border-blue-700 transition-colors flex-shrink-0">
-                  <service.icon className="h-4 w-4 sm:h-5 sm:w-5 text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 mb-2 sm:mb-3 transition-colors">{service.title}</h3>
-                  <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-medium transition-colors">{service.desc}</p>
-                </div>
+                <div className="text-5xl md:text-6xl font-bold text-slate-200 dark:text-slate-800 leading-none mb-4 transition-colors">{step.step}</div>
+                <h3 className="text-lg md:text-xl font-bold text-slate-900 dark:text-slate-100 mb-1 transition-colors">{step.title}</h3>
+                <p className="text-[10px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-3 transition-colors">{step.duration}</p>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-medium transition-colors">{step.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -310,7 +362,7 @@ export default function Home() {
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <div className="px-8 pb-8 pt-0">
+                      <div className="px-8 pb-8 pt-4">
                         <p className="text-slate-600 dark:text-slate-300 leading-relaxed font-medium transition-colors">{faq.a}</p>
                       </div>
                     </motion.div>
@@ -332,8 +384,8 @@ export default function Home() {
             className="text-center"
           >
             <h2 className="text-5xl md:text-7xl font-bold text-slate-900 dark:text-slate-100 mb-10 tracking-tighter transition-colors">Ready to build?</h2>
-            <p className="text-xl text-slate-500 dark:text-slate-400 mb-12 max-w-2xl mx-auto font-medium transition-colors">
-              Join the local businesses modernizing their operations with Flockr Labs.
+            <p className="text-xl text-slate-600 dark:text-slate-400 mb-12 max-w-2xl mx-auto font-medium transition-colors">
+              Tell us where the friction is. We&apos;ll set up a 30-minute call and scope it together.
             </p>
             <div className="flex flex-col items-center gap-6">
               <Link href="/contact">
