@@ -8,10 +8,8 @@ import {
   Bot,
   Boxes,
   ChevronDown,
-  Compass,
   Database,
   Rocket,
-  TrendingUp,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -32,32 +30,19 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-white dark:bg-slate-950 selection:bg-blue-50 dark:selection:bg-blue-900/30 selection:text-blue-600 dark:selection:text-blue-400 transition-colors">
       {/* Hero Section */}
-      <section className="relative pt-48 pb-32 px-4 overflow-hidden">
-        {/* Designer Background: Ultra-subtle grid + light mask */}
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-40 dark:opacity-20" />
-        </div>
-
+      <section className="relative pt-28 md:pt-44 pb-20 md:pb-32 px-4">
         <div className="max-w-5xl mx-auto w-full">
           <div className="flex flex-col items-center text-center">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-slate-100 mb-8 leading-[1.05] transition-colors"
+              className="text-[2.75rem] sm:text-5xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-slate-100 mb-8 leading-[1.05] transition-colors"
             >
               Custom software for <br className="hidden md:block" />
               businesses{" "}
-              <span className="relative inline-block">
-                <span className="relative z-10 font-serif italic bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent px-2">
-                  outgrowing SaaS
-                </span>
-                <motion.span
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ duration: 0.8, delay: 0.8, ease: "circOut" }}
-                  className="absolute bottom-1 left-0 w-full h-[0.12em] bg-blue-100/80 dark:bg-blue-900/40 -z-0 origin-left rounded-full"
-                />
+              <span className="font-serif italic font-medium text-slate-900 dark:text-slate-100">
+                outgrowing SaaS
               </span>
             </motion.h1>
 
@@ -65,9 +50,9 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="mb-12 max-w-2xl space-y-3"
+              className="mb-10 md:mb-12 max-w-2xl space-y-3"
             >
-              <p className="text-xl md:text-2xl font-semibold text-slate-800 dark:text-slate-100 leading-snug md:leading-relaxed transition-colors">
+              <p className="text-lg md:text-2xl font-semibold text-slate-800 dark:text-slate-100 leading-snug md:leading-relaxed transition-colors">
                 We design, build, and maintain CRMs, ops platforms, and AI workflows fitted to how your business actually runs — for when HubSpot, QuickBooks, and the rest stop fitting.
               </p>
               <p className="text-base md:text-lg font-normal text-slate-500 dark:text-slate-400 leading-relaxed transition-colors">
@@ -82,7 +67,7 @@ export default function Home() {
               className="flex flex-col items-center gap-5"
             >
               <Link href="/contact">
-                <Button size="lg" className="h-12 px-8 text-sm font-semibold bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white rounded-full transition-all shadow-[0_20px_40px_-15px_rgba(37,99,235,0.4)] dark:shadow-[0_20px_40px_-15px_rgba(59,130,246,0.3)]">
+                <Button size="lg" className="h-12 px-8 text-sm font-semibold bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white rounded-full transition-colors">
                   Contact us
                 </Button>
               </Link>
@@ -95,7 +80,7 @@ export default function Home() {
       </section>
 
       {/* Logo Wall */}
-      <section className="py-20 border-y border-slate-50 dark:border-slate-800 bg-slate-50/20 dark:bg-slate-900/20 transition-colors">
+      <section className="py-20 border-t border-slate-100 dark:border-slate-800/60 transition-colors">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <motion.p
             initial={{ opacity: 0 }}
@@ -132,7 +117,7 @@ export default function Home() {
       </section>
 
       {/* What we replace - SaaS Strikethrough Wall */}
-      <section className="py-16 md:py-32 bg-white dark:bg-slate-950 transition-colors">
+      <section className="py-16 md:py-32 border-t border-slate-100 dark:border-slate-800/60 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="max-w-2xl mb-10 md:mb-16">
             <p className="text-[11px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-4 transition-colors">The Problem</p>
@@ -156,9 +141,9 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: i * 0.04, duration: 0.3 }}
-                className="bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl px-4 py-5 md:px-5 md:py-6 transition-colors"
+                className="bg-slate-50 dark:bg-slate-900/60 rounded-2xl px-4 py-5 md:px-5 md:py-6 transition-colors"
               >
-                <span className="block text-sm md:text-base font-semibold text-slate-400 dark:text-slate-500 transition-colors">
+                <span className="block text-sm md:text-base font-semibold text-slate-400 dark:text-slate-500 line-through decoration-1 decoration-slate-300 dark:decoration-slate-700 transition-colors">
                   {tool}
                 </span>
               </motion.div>
@@ -172,7 +157,7 @@ export default function Home() {
       </section>
 
       {/* What we ship - 4 Capability Cards */}
-      <section className="py-16 md:py-32 bg-slate-50/40 dark:bg-slate-900/40 transition-colors">
+      <section className="py-16 md:py-32 border-t border-slate-100 dark:border-slate-800/60 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="max-w-2xl mb-10 md:mb-16">
             <p className="text-[11px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-4 transition-colors">What we ship</p>
@@ -180,47 +165,31 @@ export default function Home() {
               Custom-built. <br className="hidden md:block" />Yours to keep.
             </h2>
             <p className="text-base md:text-lg text-slate-600 dark:text-slate-400 font-medium leading-relaxed transition-colors">
-              Greenfield or legacy. CRM or ops platform. AI automation or system audit. We&apos;re 0&nbsp;→&nbsp;1 builders and 1&nbsp;→&nbsp;10 scalers, building what your business actually needs &mdash; fitted, custom, and owned by you.
+              Brand-new build or scaling what you already have. CRM, ops platform, or AI workflow. We build what your business actually needs &mdash; fitted, custom, and owned by you.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 md:gap-x-16 gap-y-12 md:gap-y-16">
             {[
               {
                 icon: Database,
                 title: "Custom CRMs",
-                tags: ["Lead intake", "Pipeline", "Customer ops"],
                 desc: "Build the lead intake, sales pipeline, and customer-ops dashboard your team actually wants — when HubSpot, Pipedrive, or Salesforce don't fit, or when you don't have one yet.",
               },
               {
                 icon: Boxes,
                 title: "Operations Platforms",
-                tags: ["Job intake", "Scheduling", "Invoicing"],
                 desc: "Job intake → resource assignment → invoicing → reporting, in one screen, fitted to your industry. Whether you're moving off spreadsheets or scaling past your current SaaS.",
               },
               {
                 icon: Bot,
                 title: "AI Automations",
-                tags: ["Inbox triage", "Doc parsing", "Agents"],
                 desc: "Inbox triage, document processing, custom agents that know your business. Pragmatic AI applied where it pays back — not where it's trendy.",
               },
               {
                 icon: Rocket,
-                title: "0 → 1 Builds",
-                tags: ["MVPs", "First product", "Getting online"],
-                desc: "Got an idea, no software yet? We design and ship the first version of your product, internal tool, or customer-facing platform — engineering-led, not template-led.",
-              },
-              {
-                icon: TrendingUp,
-                title: "1 → 10 Scaling",
-                tags: ["Modernization", "Refactors", "Pragmatic upgrades"],
-                desc: "Got something working but it's groaning under growth? We modernize, refactor, and scale the systems you can't afford to throw away — pragmatic and incremental, never rip-and-replace.",
-              },
-              {
-                icon: Compass,
-                title: "System Audits & Strategy",
-                tags: ["Stack review", "Direction", "Tech advisory"],
-                desc: "Not sure where to start? We review your current stack, find the bottlenecks, and tell you what to keep, replace, or rebuild — even if some of the answers point away from us.",
+                title: "Launch & Scale",
+                desc: "From your first product (0 → 1) to scaling systems past their breaking point (1 → 10). Engineering-led builds and pragmatic, incremental modernization — never rip-and-replace.",
               },
             ].map((cap, i) => (
               <motion.div
@@ -229,18 +198,10 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: i * 0.06, duration: 0.4 }}
-                className="bg-white dark:bg-slate-950 rounded-3xl p-6 md:p-8 border border-slate-100 dark:border-slate-800 hover:border-blue-100 dark:hover:border-blue-900 transition-colors"
               >
-                <div className="h-12 w-12 rounded-xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center mb-5 transition-colors">
-                  <cap.icon className="h-6 w-6 text-blue-600 dark:text-blue-400 transition-colors" />
-                </div>
+                <cap.icon className="h-6 w-6 text-slate-900 dark:text-slate-100 mb-5 transition-colors" strokeWidth={1.75} />
                 <h3 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-slate-100 mb-3 transition-colors">{cap.title}</h3>
-                <div className="flex flex-wrap items-center gap-1.5 mb-4">
-                  {cap.tags.map((t) => (
-                    <span key={t} className="text-[11px] font-semibold text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 rounded-full px-2.5 py-1 transition-colors">{t}</span>
-                  ))}
-                </div>
-                <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 leading-relaxed font-medium transition-colors">
+                <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed font-medium max-w-md transition-colors">
                   {cap.desc}
                 </p>
               </motion.div>
@@ -250,7 +211,7 @@ export default function Home() {
       </section>
 
       {/* How we work - 4 Step Process */}
-      <section className="py-16 md:py-32 bg-white dark:bg-slate-950 transition-colors">
+      <section className="py-16 md:py-32 border-t border-slate-100 dark:border-slate-800/60 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="max-w-2xl mb-10 md:mb-16">
             <p className="text-[11px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-4 transition-colors">How we work</p>
@@ -308,11 +269,11 @@ export default function Home() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-32 bg-white dark:bg-slate-950 transition-colors">
+      <section className="py-20 md:py-32 border-t border-slate-100 dark:border-slate-800/60 transition-colors">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4 tracking-tight transition-colors">Common Questions</h2>
-            <p className="text-slate-500 dark:text-slate-400 font-medium text-lg transition-colors">Everything you need to know about working with us.</p>
+          <div className="text-center mb-16 md:mb-20">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4 tracking-tight transition-colors">Common Questions</h2>
+            <p className="text-slate-500 dark:text-slate-400 font-medium text-base md:text-lg transition-colors">Everything you need to know about working with us.</p>
           </div>
 
           <div className="space-y-6">
@@ -344,13 +305,13 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="rounded-[2rem] border border-slate-100 dark:border-slate-800 bg-slate-50/30 dark:bg-slate-900/30 hover:bg-white dark:hover:bg-slate-900 hover:border-blue-100 dark:hover:border-blue-800 hover:shadow-xl hover:shadow-blue-500/5 dark:hover:shadow-blue-500/10 transition-all duration-300 overflow-hidden"
+                className="rounded-2xl border border-slate-100 dark:border-slate-800/60 hover:bg-slate-50/60 dark:hover:bg-slate-900/40 transition-colors overflow-hidden"
               >
                 <button
                   onClick={() => toggleFaq(i)}
-                  className="w-full p-8 text-left flex items-center justify-between gap-4 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500/50 rounded-[2rem]"
+                  className="w-full p-6 md:p-8 text-left flex items-center justify-between gap-4 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500/50 rounded-2xl"
                 >
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100 transition-colors pr-4">{faq.q}</h3>
+                  <h3 className="text-base md:text-lg font-bold text-slate-900 dark:text-slate-100 transition-colors pr-4">{faq.q}</h3>
                   <motion.div
                     animate={{ rotate: openFaq === i ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
@@ -368,8 +329,8 @@ export default function Home() {
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <div className="px-8 pb-8 pt-4">
-                        <p className="text-slate-600 dark:text-slate-300 leading-relaxed font-medium transition-colors">{faq.a}</p>
+                      <div className="px-6 md:px-8 pb-6 md:pb-8 pt-2">
+                        <p className="text-sm md:text-base text-slate-600 dark:text-slate-300 leading-relaxed font-medium transition-colors">{faq.a}</p>
                       </div>
                     </motion.div>
                   )}
@@ -381,7 +342,7 @@ export default function Home() {
       </section>
 
       {/* CTA - The Signature Piece */}
-      <section className="py-40 px-6">
+      <section className="py-24 md:py-40 px-6 border-t border-slate-100 dark:border-slate-800/60 transition-colors">
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -389,13 +350,13 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-5xl md:text-7xl font-bold text-slate-900 dark:text-slate-100 mb-10 tracking-tighter transition-colors">Ready to build?</h2>
-            <p className="text-xl text-slate-600 dark:text-slate-400 mb-12 max-w-2xl mx-auto font-medium transition-colors">
+            <h2 className="text-4xl md:text-7xl font-bold text-slate-900 dark:text-slate-100 mb-8 md:mb-10 tracking-tighter transition-colors">Ready to build?</h2>
+            <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 md:mb-12 max-w-2xl mx-auto font-medium transition-colors">
               Tell us where the friction is. We&apos;ll set up a 30-minute call and scope it together.
             </p>
             <div className="flex flex-col items-center gap-6">
               <Link href="/contact">
-                <Button size="lg" className="h-16 px-12 text-lg font-bold bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white rounded-full transition-all shadow-[0_20px_40px_-15px_rgba(37,99,235,0.4)] dark:shadow-[0_20px_40px_-15px_rgba(59,130,246,0.3)]">
+                <Button size="lg" className="h-14 md:h-16 px-10 md:px-12 text-base md:text-lg font-bold bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white rounded-full transition-colors">
                   Contact us
                 </Button>
               </Link>
