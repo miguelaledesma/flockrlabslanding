@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     siteName: "Flockr Labs",
     images: [
       {
-        url: "/flockr.png?v=2",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Flockr Labs",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Flockr Labs — Custom Software for Businesses Outgrowing SaaS",
     description: "Custom CRMs, ops platforms, and AI workflows for growing businesses. Engineering experience from Airbnb, HubSpot, and AI startups.",
-    images: ["/flockr.png?v=2"],
+    images: ["/og-image.png"],
   },
   // Favicon is auto-served from app/icon.svg by Next.js convention.
   // Apple-touch-icon falls back to that as well.
