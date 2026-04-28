@@ -157,7 +157,7 @@ export default function About() {
               href="/contact"
               className="inline-block px-10 py-5 bg-blue-600 dark:bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-500 dark:hover:bg-blue-400 transition-all shadow-lg hover:shadow-xl text-lg"
             >
-              Book a strategy call
+              Contact us
             </Link>
           </motion.div>
         </div>

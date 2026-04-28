@@ -8,8 +8,10 @@ import {
   Bot,
   Boxes,
   ChevronDown,
+  Compass,
   Database,
-  Wrench,
+  Rocket,
+  TrendingUp,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -59,23 +61,19 @@ export default function Home() {
               </span>
             </motion.h1>
 
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-5 max-w-2xl leading-relaxed font-medium transition-colors"
+              className="mb-12 max-w-2xl space-y-3"
             >
-              We design, build, and maintain CRMs, ops platforms, and AI workflows fitted to how your business actually runs — for when HubSpot, QuickBooks, and the rest stop fitting.
-            </motion.p>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-lg md:text-xl text-slate-800 dark:text-slate-200 mb-12 max-w-2xl leading-relaxed font-semibold transition-colors"
-            >
-              White-glove custom software, built to the standard you&apos;ve come to expect from the big names.
-            </motion.p>
+              <p className="text-xl md:text-2xl font-semibold text-slate-800 dark:text-slate-100 leading-snug md:leading-relaxed transition-colors">
+                We design, build, and maintain CRMs, ops platforms, and AI workflows fitted to how your business actually runs — for when HubSpot, QuickBooks, and the rest stop fitting.
+              </p>
+              <p className="text-base md:text-lg font-normal text-slate-500 dark:text-slate-400 leading-relaxed transition-colors">
+                White-glove custom software, built to the standard you&apos;ve come to expect from the big names.
+              </p>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -84,12 +82,12 @@ export default function Home() {
               className="flex flex-col items-center gap-5"
             >
               <Link href="/contact">
-                <Button size="lg" className="h-12 px-8 text-sm font-semibold bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 dark:hover:bg-slate-200 text-white dark:text-slate-900 rounded-full transition-all shadow-sm">
-                  Book a 30-min strategy call
+                <Button size="lg" className="h-12 px-8 text-sm font-semibold bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white rounded-full transition-all shadow-[0_20px_40px_-15px_rgba(37,99,235,0.4)] dark:shadow-[0_20px_40px_-15px_rgba(59,130,246,0.3)]">
+                  Contact us
                 </Button>
               </Link>
               <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 transition-colors">
-                Engineering from Airbnb, HubSpot, and AI startups at every stage
+                10+ years shipping software at Airbnb, HubSpot, and AI startups from seed to scale
               </p>
             </motion.div>
           </div>
@@ -158,14 +156,11 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: i * 0.04, duration: 0.3 }}
-                className="relative bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl px-4 py-5 md:px-5 md:py-6 overflow-hidden transition-colors"
+                className="bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl px-4 py-5 md:px-5 md:py-6 transition-colors"
               >
                 <span className="block text-sm md:text-base font-semibold text-slate-400 dark:text-slate-500 transition-colors">
                   {tool}
                 </span>
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="w-[120%] h-[2px] bg-red-500/60 dark:bg-red-500/70 transform -rotate-12 origin-center" />
-                </div>
               </motion.div>
             ))}
           </div>
@@ -182,38 +177,50 @@ export default function Home() {
           <div className="max-w-2xl mb-10 md:mb-16">
             <p className="text-[11px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-4 transition-colors">What we ship</p>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-4 sm:mb-6 tracking-tight leading-tight transition-colors">
-              One system, <br className="hidden md:block" />fitted to your business.
+              Custom-built. <br className="hidden md:block" />Yours to keep.
             </h2>
             <p className="text-base md:text-lg text-slate-600 dark:text-slate-400 font-medium leading-relaxed transition-colors">
-              Fewer tools, deeper fit, owned by you. Here&apos;s what the customers we replace SaaS for typically end up shipping with us.
+              Greenfield or legacy. CRM or ops platform. AI automation or system audit. We&apos;re 0&nbsp;→&nbsp;1 builders and 1&nbsp;→&nbsp;10 scalers, building what your business actually needs &mdash; fitted, custom, and owned by you.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {[
               {
                 icon: Database,
                 title: "Custom CRMs",
-                replaces: ["HubSpot", "Pipedrive", "Salesforce"],
-                example: "Lead intake from your channels — web forms, Instagram DMs, inbound calls — enriched and routed to the right person, tracked across pipeline stages fitted to your actual sales motion. Not a generic template.",
+                tags: ["Lead intake", "Pipeline", "Customer ops"],
+                desc: "Build the lead intake, sales pipeline, and customer-ops dashboard your team actually wants — when HubSpot, Pipedrive, or Salesforce don't fit, or when you don't have one yet.",
               },
               {
                 icon: Boxes,
                 title: "Operations Platforms",
-                replaces: ["QuickBooks", "Asana", "Spreadsheets"],
-                example: "Job intake → resource and crew assignment → invoicing → payment, in one screen, fitted to your industry's real workflow. Replaces the spreadsheet sprawl you've outgrown.",
+                tags: ["Job intake", "Scheduling", "Invoicing"],
+                desc: "Job intake → resource assignment → invoicing → reporting, in one screen, fitted to your industry. Whether you're moving off spreadsheets or scaling past your current SaaS.",
               },
               {
                 icon: Bot,
-                title: "AI Workflows",
-                replaces: ["Zapier", "Manual review", "Inbox triage"],
-                example: "Inbound emails triaged by an LLM that knows your business. Documents read and summarized. Repetitive 20-minute decisions made in 10 seconds — with a human in the loop where it counts.",
+                title: "AI Automations",
+                tags: ["Inbox triage", "Doc parsing", "Agents"],
+                desc: "Inbox triage, document processing, custom agents that know your business. Pragmatic AI applied where it pays back — not where it's trendy.",
               },
               {
-                icon: Wrench,
-                title: "Migrations & Integrations",
-                replaces: ["Vendor lock-in", "CSV exports", "Data trapped in SaaS"],
-                example: "Get your data out of the tools you've outgrown. Two-way sync with the ones you can't ditch yet. Phased migration so you're never stuck mid-switch with two sources of truth.",
+                icon: Rocket,
+                title: "0 → 1 Builds",
+                tags: ["MVPs", "First product", "Getting online"],
+                desc: "Got an idea, no software yet? We design and ship the first version of your product, internal tool, or customer-facing platform — engineering-led, not template-led.",
+              },
+              {
+                icon: TrendingUp,
+                title: "1 → 10 Scaling",
+                tags: ["Modernization", "Refactors", "Pragmatic upgrades"],
+                desc: "Got something working but it's groaning under growth? We modernize, refactor, and scale the systems you can't afford to throw away — pragmatic and incremental, never rip-and-replace.",
+              },
+              {
+                icon: Compass,
+                title: "System Audits & Strategy",
+                tags: ["Stack review", "Direction", "Tech advisory"],
+                desc: "Not sure where to start? We review your current stack, find the bottlenecks, and tell you what to keep, replace, or rebuild — even if some of the answers point away from us.",
               },
             ].map((cap, i) => (
               <motion.div
@@ -221,7 +228,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: i * 0.08, duration: 0.4 }}
+                transition={{ delay: i * 0.06, duration: 0.4 }}
                 className="bg-white dark:bg-slate-950 rounded-3xl p-6 md:p-8 border border-slate-100 dark:border-slate-800 hover:border-blue-100 dark:hover:border-blue-900 transition-colors"
               >
                 <div className="h-12 w-12 rounded-xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center mb-5 transition-colors">
@@ -229,13 +236,12 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-slate-100 mb-3 transition-colors">{cap.title}</h3>
                 <div className="flex flex-wrap items-center gap-1.5 mb-4">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mr-1 transition-colors">Replaces</span>
-                  {cap.replaces.map((r) => (
-                    <span key={r} className="text-[11px] font-semibold text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 rounded-full px-2.5 py-1 transition-colors">{r}</span>
+                  {cap.tags.map((t) => (
+                    <span key={t} className="text-[11px] font-semibold text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 rounded-full px-2.5 py-1 transition-colors">{t}</span>
                   ))}
                 </div>
                 <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 leading-relaxed font-medium transition-colors">
-                  {cap.example}
+                  {cap.desc}
                 </p>
               </motion.div>
             ))}
@@ -390,7 +396,7 @@ export default function Home() {
             <div className="flex flex-col items-center gap-6">
               <Link href="/contact">
                 <Button size="lg" className="h-16 px-12 text-lg font-bold bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white rounded-full transition-all shadow-[0_20px_40px_-15px_rgba(37,99,235,0.4)] dark:shadow-[0_20px_40px_-15px_rgba(59,130,246,0.3)]">
-                  Book a strategy call
+                  Contact us
                 </Button>
               </Link>
               <a href="mailto:flockr@flockrlabs.com" className="text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-200 transition-colors font-bold uppercase tracking-widest text-[10px]">
