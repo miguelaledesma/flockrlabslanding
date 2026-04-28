@@ -31,15 +31,8 @@ export const metadata: Metadata = {
     description: "Custom CRMs, ops platforms, and AI workflows for growing businesses. Engineering experience from Airbnb, HubSpot, and AI startups.",
     images: ["/flockr.png?v=2"],
   },
-  icons: {
-    icon: [
-      { url: "/flockr.png", sizes: "any" },
-      { url: "/logo.svg", type: "image/svg+xml" },
-    ],
-    apple: [
-      { url: "/flockr.png", sizes: "180x180" },
-    ],
-  },
+  // Favicon is auto-served from app/icon.svg by Next.js convention.
+  // Apple-touch-icon falls back to that as well.
 };
 
 export default function RootLayout({
