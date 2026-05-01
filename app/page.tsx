@@ -37,11 +37,11 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-[2.75rem] sm:text-5xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-slate-100 mb-8 leading-[1.05] transition-colors"
+              className="text-[2.75rem] sm:text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-[1.05] bg-gradient-to-br from-slate-900 via-slate-800 to-blue-500 dark:from-slate-100 dark:via-slate-200 dark:to-blue-400 bg-clip-text text-transparent pb-2"
             >
               Custom software for <br className="hidden md:block" />
               businesses{" "}
-              <span className="font-serif italic font-medium text-slate-900 dark:text-slate-100">
+              <span className="font-serif italic font-medium">
                 outgrowing SaaS
               </span>
             </motion.h1>
@@ -350,7 +350,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-4xl md:text-7xl font-bold text-slate-900 dark:text-slate-100 mb-8 md:mb-10 tracking-tighter transition-colors">Ready to build?</h2>
+            <h2 className="text-4xl md:text-7xl font-bold mb-8 md:mb-10 tracking-tighter bg-gradient-to-br from-slate-900 via-slate-800 to-blue-500 dark:from-slate-100 dark:via-slate-200 dark:to-blue-400 bg-clip-text text-transparent pb-2">Ready to build?</h2>
             <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 md:mb-12 max-w-2xl mx-auto font-medium transition-colors">
               Tell us where the friction is. We&apos;ll set up a 30-minute call and scope it together.
             </p>
