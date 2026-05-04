@@ -62,6 +62,11 @@ export function Footer() {
                 flockr@flockrlabs.com
               </a>
             </p>
+            <p className="text-gray-600 dark:text-slate-300 text-sm mt-2 transition-colors">
+              <Link href="/privacy-policy" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                Privacy Policy
+              </Link>
+            </p>
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-gray-200 dark:border-slate-800 text-center text-gray-600 dark:text-slate-400 transition-colors">
