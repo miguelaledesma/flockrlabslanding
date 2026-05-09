@@ -77,25 +77,12 @@ export function ShopClient() {
 
       {/* Product */}
       <section
-        aria-labelledby="product-heading"
-        className="py-16 md:py-24 border-t border-slate-100 dark:border-slate-800/60 transition-colors"
+        id="product-heading"
+        aria-label="Products"
+        className="py-16 md:py-24 border-t border-slate-100 dark:border-slate-800/60 transition-colors scroll-mt-24"
       >
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-10 md:mb-14">
-            <p className="text-[11px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-4 transition-colors">
-              The Drop
-            </p>
-            <h2
-              id="product-heading"
-              className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100 tracking-tight leading-tight transition-colors"
-            >
-              The Builder Hats.
-            </h2>
-            <p className="text-base md:text-lg text-slate-600 dark:text-slate-400 font-medium leading-relaxed transition-colors max-w-xl mx-auto mt-4">
-              A small drop. Built clean. Made for the desk, the deploy, and
-              everywhere in between.
-            </p>
-          </div>
+          <h2 className="sr-only">Products</h2>
 
           <ul
             className="mx-auto grid w-full grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-[420px] md:max-w-[880px] list-none p-0"

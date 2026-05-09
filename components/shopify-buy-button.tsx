@@ -140,12 +140,22 @@ export function ShopifyBuyButton({ productId, nodeId }: ShopifyBuyButtonProps) {
                 // Let the parent container control width so each card
                 // can sit centered around 360px–420px wide.
                 product: {
+                  "width": "100%",
+                  "max-width": "100%",
+                  "margin": "0 auto",
+                  "text-align": "center",
                   "@media (min-width: 601px)": {
                     "max-width": "100%",
                     "margin-left": "0px",
                     "margin-bottom": "0px",
                   },
                 },
+                title: { "text-align": "center" },
+                prices: { "text-align": "center", "justify-content": "center" },
+                price: { "text-align": "center" },
+                compareAt: { "text-align": "center" },
+                imgWrapper: { "text-align": "center", "margin": "0 auto" },
+                img: { "margin": "0 auto", "display": "block" },
                 button: buttonStyles,
                 quantityInput: quantityInputStyles,
               },
@@ -213,11 +223,13 @@ export function ShopifyBuyButton({ productId, nodeId }: ShopifyBuyButtonProps) {
   }, [productId]);
 
   return (
-    <div
-      ref={nodeRef}
-      id={nodeId}
-      aria-label="Product purchase widget"
-      className="w-full"
-    />
+    <div className="flex w-full justify-center">
+      <div
+        ref={nodeRef}
+        id={nodeId}
+        aria-label="Product purchase widget"
+        className="w-full"
+      />
+    </div>
   );
 }
