@@ -25,6 +25,7 @@ export function Navigation() {
   const navItems = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
+    { name: "Shop", href: "/shop" },
     { name: "Contact", href: "/contact" },
     { name: "Privacy", href: "/privacy-policy" },
   ];
